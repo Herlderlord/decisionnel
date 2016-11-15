@@ -5,9 +5,9 @@
  */
 package carsense.Tests;
 
-import Modele.Problem;
-import Modele.Result;
-import Process.Builder;
+import carsense.Modele.Problem;
+import carsense.Modele.Result;
+import carsense.Process.Builder;
 import carsense.FunctionsPreference.*;
 import carsense.Methods.*;
 import carsense.Output.HtmlGenerator;

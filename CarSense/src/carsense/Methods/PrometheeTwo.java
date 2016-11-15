@@ -5,8 +5,8 @@
  */
 package carsense.Methods;
 
-import Modele.Problem;
-import Modele.Result;
+import carsense.Modele.Problem;
+import carsense.Modele.Result;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 
 /**

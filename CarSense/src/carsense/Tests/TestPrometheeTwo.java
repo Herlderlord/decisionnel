@@ -14,6 +14,7 @@ import carsense.Methods.MethodStrategy;
 import carsense.Methods.PrometheeOne;
 import carsense.Methods.PrometheeTwo;
 import carsense.Output.HtmlGenerator;
+import java.io.IOException;
 
 /**
  *
@@ -22,7 +23,7 @@ import carsense.Output.HtmlGenerator;
 public class TestPrometheeTwo {
     
     
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         
         // -- Test de PROMETHEE II
         String filename = "monFichier.csv";

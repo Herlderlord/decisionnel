@@ -12,6 +12,7 @@ import carsense.FunctionsPreference.*;
 import carsense.Methods.*;
 import carsense.Output.HtmlGenerator;
 import carsense.Tests.*;
+import java.io.IOException;
 
 /**
  *
@@ -19,7 +20,7 @@ import carsense.Tests.*;
  */
 public class TestPrometheeOne {
     
-    public static void main(String [] args) {
+    public static void main(String [] args) throws IOException {
         
         // -- Test de PROMETHEE I
         String filename = "monFichier.csv";

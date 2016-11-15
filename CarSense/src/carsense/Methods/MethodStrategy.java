@@ -5,13 +5,33 @@
  */
 package carsense.Methods;
 
+import Modele.Problem;
+import Modele.Result;
+import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+
 /**
  *
  * @author mathi
  */
-public class MethodStrategy {
+public abstract class MethodStrategy {
     
-    public TypeARetourner calcul(Data data, MethodStrategy method, FunctionpreferenceStrategy function); 
-    public TypeARetourner getResult(); 
+    /**
+     *
+     */
+    protected Result result;
+    
+    /**
+     *
+     * @param problem
+     * @param function
+     * @return
+     */
+    public abstract Result calcul(Problem problem, FunctionPreferenceStrategy function); 
+
+    /**
+     *
+     * @return
+     */
+    public abstract Result getResult(); 
     
 }

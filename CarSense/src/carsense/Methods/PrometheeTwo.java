@@ -5,13 +5,21 @@
  */
 package carsense.Methods;
 
+import Modele.Problem;
+import Modele.Result;
+import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+
 /**
  *
  * @author mathi
  */
-public class PrometheeTwo {
+public class PrometheeTwo extends MethodStrategy {
     
-    public TypeARetourner calcul () {
-        
+    public Result calcul(Problem problem, FunctionPreferenceStrategy function) {
+        return null;
+    }
+    
+    public Result getResult() {
+        return null;
     }
 }

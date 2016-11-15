@@ -11,5 +11,5 @@ package carsense.FunctionsPreference;
  */
 public interface FunctionPreferenceStrategy {
     
-    public Matrice calculPreference(); 
+    public double[][] calculPreference(); 
 }

@@ -11,7 +11,9 @@ package carsense.FunctionsPreference;
  */
 public class VoieNormalStrategy implements FunctionPreferenceStrategy {
     
-    public Matrice calculPreference() {
+    public double[][] calculPreference() {
         
+        
+        return null; 
     }
 }

@@ -5,8 +5,12 @@
  */
 package carsense.Tests;
 
+import Modele.Problem;
+import Modele.Result;
+import Process.Builder;
 import carsense.FunctionsPreference.*;
 import carsense.Methods.*;
+import carsense.Output.HtmlGenerator;
 import carsense.Tests.*;
 
 /**
@@ -18,22 +22,17 @@ public class TestPrometheeOne {
     public static void main(String [] args) {
         
         // -- Test de PROMETHEE I
+        String filename = "monFichier.csv";
+        Problem problem = Builder.createProblemVoiture(filename);
         
-        // Get data 
-        String dataFilename = "nameFile"; 
-        Data data = getDataFile(dataFilename); 
+        MethodStrategy method = new PrometheeOne();
+        FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();
         
-        // Choose Methods and Preference 
-        PrometheeOne promethee = new PrometheeOne(); 
-        VoieBasiqueStrategy voieBasique = new VoieBasiqueStrategy();
+        Result result = method.calcul(problem, functionPreference);
         
-        // Calcul Promethee 
-        promethee.calcul(data, promethee, voieBasique); 
-        
-        // Generate and write Html 
-        HtmlGenerator htmlGenerator = new HtmlGenerator(); 
-        writeFile("data", htmlGenerator.generateHtml(promethee));
-        
+        HtmlGenerator htmlGenerator = new HtmlGenerator();
+        htmlGenerator.generateHtml((PrometheeOne)method);
+
         
     }
 }

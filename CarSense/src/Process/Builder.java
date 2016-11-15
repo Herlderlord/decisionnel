@@ -27,7 +27,7 @@ public class Builder {
     public static DataProblem createProblem(String filename) {
         DataProblem result = null; 
         // TODO: Open csv file 
-        
+        File file = new File (filename);
         
         /*
             On a peut être des titres à la première ligne. 

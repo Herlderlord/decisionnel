@@ -1,0 +1,5 @@
+preferences:desc,asc,desc,desc,desc,asc,desc
+defSeuils:inv,inv,dir,dir,dir,dir,dir
+seuilIndiff:0.025/-2000,0.02/0,0/1,0/0,/,0/50,0.01/-0.2
+seuilPref:0.05/-3000,0.05/0,0/2,0/3,0/2,0/80,0.05/-0.1
+seuilVeto:0.05/2000,/,0/3,0/5,0/6,/,/

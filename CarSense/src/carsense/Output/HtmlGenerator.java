@@ -7,6 +7,8 @@ package carsense.Output;
 
 import carsense.Output.*;
 import carsense.Methods.*;
+import carsense.Modele.Voiture;
+import java.util.Iterator;
 
 /**
  *
@@ -17,6 +19,7 @@ public class HtmlGenerator {
     public String generateHtml(PrometheeOne promethee) {
         
         
+        // Flux positifs et negatifs.
         double[] fluxNegatif = promethee.fluxNegatif; 
         double[] fluxPositif = promethee.fluxPositif;
         
@@ -31,6 +34,29 @@ public class HtmlGenerator {
         
         System.out.println("Flux Positif : " + message_positif); 
         System.out.println("Flux Negatif : " + message_negatif);
+        
+        // Classement Positif 
+        System.out.println("Classement Positif : ");
+        Iterator<Voiture> it_positif = promethee.classementPositif.iterator();
+        
+        System.out.print("[");
+        while(it_positif.hasNext()) {
+            Voiture voiture = it_positif.next();   
+            System.out.print(voiture.getNom() + ",");
+        }
+        System.out.println("]");
+        
+        
+        // Classement Négatif
+        System.out.println("Classement Negatif :");
+        Iterator<Voiture> it_negatif = promethee.classementNegatif.iterator();
+        
+        System.out.print("[");
+        while(it_negatif.hasNext()) {
+            Voiture voiture = it_negatif.next();
+            System.out.print(voiture.getNom() + ",");
+        }
+        System.out.println("]");
         
         
         return "Output de promethee One. ";

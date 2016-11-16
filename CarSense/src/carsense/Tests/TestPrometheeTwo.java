@@ -9,6 +9,7 @@ import carsense.Modele.Problem;
 import carsense.Modele.Result;
 import carsense.Process.Builder;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+import carsense.FunctionsPreference.VoieBasiqueStrategy;
 import carsense.FunctionsPreference.VoieNormalStrategy;
 import carsense.Methods.MethodStrategy;
 import carsense.Methods.PrometheeOne;
@@ -32,12 +33,12 @@ public class TestPrometheeTwo {
         Problem problem = Builder.createProblemVoiture(filename, "res/criteres.csv");
         
         MethodStrategy method = new PrometheeTwo();
-        FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();
+        FunctionPreferenceStrategy functionPreference = new VoieBasiqueStrategy();
         
         method.calcul(problem, functionPreference);
         
         OutputGenerator outputGenerator = new StringGenerator();
-        outputGenerator.generate((PrometheeOne)method);
+        System.out.println(outputGenerator.generate((PrometheeTwo)method));
 
     }
 }

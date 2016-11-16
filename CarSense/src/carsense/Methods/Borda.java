@@ -13,15 +13,14 @@ import carsense.Modele.Result;
  *
  * @author dem_l
  */
-public class Borda extends MethodStrategy {
+public class Borda  {
 
-    @Override
-    public Result calcul(Problem problem, FunctionPreferenceStrategy function) {
+
+    public Result calcul(Problem problem) {
         
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
     public Result getResult() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -68,11 +68,12 @@ public class PrometheeOne extends MethodStrategy {
             Voiture voiture = it_voiture.next();
             map_positif.put(voiture, new Double(fluxPositif[i]));
             map_negatif.put(voiture, new Double(fluxNegatif[i]));
+            i++;
         }
         
         // Sort Maps 
-        map_positif = MapUtil.sortByValue(map_positif);
-        map_negatif = MapUtil.sortByValue(map_negatif);
+        map_positif = MapUtil.sortByValue(map_positif, false);
+        map_negatif = MapUtil.sortByValue(map_negatif, true);
         
         
         // Transform maps into Classements.
@@ -80,7 +81,7 @@ public class PrometheeOne extends MethodStrategy {
         classementNegatif = new LinkedList<Voiture>();
         
         
-        // For Positif         
+        // For Positif
         for (Map.Entry<Voiture, Double> entry : map_positif.entrySet())
         {
             classementPositif.add(entry.getKey());

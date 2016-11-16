@@ -11,6 +11,8 @@ import carsense.Process.Builder;
 import carsense.FunctionsPreference.*;
 import carsense.Methods.*;
 import carsense.Output.HtmlGenerator;
+import carsense.Output.OutputGenerator;
+import carsense.Output.StringGenerator;
 import carsense.Tests.*;
 import java.io.IOException;
 
@@ -31,8 +33,8 @@ public class TestPrometheeOne {
         
         method.calcul(problem, functionPreference);
         
-        HtmlGenerator htmlGenerator = new HtmlGenerator();
-        System.out.println(htmlGenerator.generateHtml((PrometheeOne)method));
+        OutputGenerator outputGenerator = new StringGenerator();
+        System.out.println(outputGenerator.generate((PrometheeOne)method));
 
         
     }

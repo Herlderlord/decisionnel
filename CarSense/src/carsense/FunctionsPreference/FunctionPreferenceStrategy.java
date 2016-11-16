@@ -5,11 +5,13 @@
  */
 package carsense.FunctionsPreference;
 
+import carsense.Modele.Problem;
+
 /**
  *
  * @author mathi
  */
 public interface FunctionPreferenceStrategy {
     
-    public double[][] calculPreference(); 
+    public double[][] calculPreference(Problem problem); 
 }

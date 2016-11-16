@@ -80,9 +80,7 @@ public class PrometheeOne extends MethodStrategy {
         classementNegatif = new LinkedList<Voiture>();
         
         
-        // For Positif 
-        Iterator<Map.Entry> it_positif = map_positif.get;
-        
+        // For Positif         
         for (Map.Entry<Voiture, Double> entry : map_positif.entrySet())
         {
             classementPositif.add(entry.getKey());

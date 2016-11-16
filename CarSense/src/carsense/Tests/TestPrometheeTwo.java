@@ -32,7 +32,7 @@ public class TestPrometheeTwo {
         MethodStrategy method = new PrometheeTwo();
         FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();
         
-        Result result = method.calcul(problem, functionPreference);
+        method.calcul(problem, functionPreference);
         
         HtmlGenerator htmlGenerator = new HtmlGenerator();
         htmlGenerator.generateHtml((PrometheeOne)method);

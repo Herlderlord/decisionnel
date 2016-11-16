@@ -24,15 +24,15 @@ public class TestPrometheeOne {
         
         // -- Test de PROMETHEE I
         String filename = "monFichier.csv";
-        Problem problem = Builder.createProblemVoiture(filename);
+        Problem problem = Builder.createProblemVoiture("res/voiture.csv");
         
         MethodStrategy method = new PrometheeOne();
         FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();
         
-        Result result = method.calcul(problem, functionPreference);
+        method.calcul(problem, functionPreference);
         
         HtmlGenerator htmlGenerator = new HtmlGenerator();
-        htmlGenerator.generateHtml((PrometheeOne)method);
+        System.out.println(htmlGenerator.generateHtml((PrometheeOne)method));
 
         
     }

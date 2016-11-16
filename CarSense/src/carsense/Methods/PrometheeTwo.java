@@ -15,11 +15,8 @@ import carsense.FunctionsPreference.FunctionPreferenceStrategy;
  */
 public class PrometheeTwo extends MethodStrategy {
     
-    public Result calcul(Problem problem, FunctionPreferenceStrategy function) {
-        return null;
+    public void calcul(Problem problem, FunctionPreferenceStrategy function) {
+        
     }
     
-    public Result getResult() {
-        return null;
-    }
 }

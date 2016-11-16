@@ -8,6 +8,8 @@ package carsense.Methods;
 import carsense.Modele.Problem;
 import carsense.Modele.Result;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+import carsense.FunctionsPreference.VoieBasiqueStrategy;
+import java.util.Arrays;
 
 /**
  *
@@ -16,15 +18,30 @@ import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 public class PrometheeOne extends MethodStrategy {
     
     
+    public double[] fluxPositif; 
+    public double[] fluxNegatif;
+    
     public PrometheeOne() {
         
     }
     
-    public Result calcul(Problem problem, FunctionPreferenceStrategy function) {
-        return null;
+    public void calcul(Problem problem, FunctionPreferenceStrategy function) {
+        
+        double[][] result = function.calculPreference(problem);
+        
+        fluxPositif = new double[result.length]; 
+        fluxNegatif = new double[result.length];
+        
+        Arrays.fill(fluxPositif, 0);
+        Arrays.fill(fluxNegatif, 0);
+        
+        for(int i = 0; i < result.length; i++) {
+            for(int j=0; j < result[i].length; j++) {
+                fluxPositif[j] += result[i][j];  
+                fluxNegatif[i] += result[i][j];
+            }
+        }
+        
     }
     
-    public Result getResult() {
-        return null;
-    }
 }

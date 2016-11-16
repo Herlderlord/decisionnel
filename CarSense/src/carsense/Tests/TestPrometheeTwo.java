@@ -29,7 +29,7 @@ public class TestPrometheeTwo {
         
         // -- Test de PROMETHEE II
         String filename = "res/voiture.csv";
-        Problem problem = Builder.createProblemVoiture(filename);
+        Problem problem = Builder.createProblemVoiture(filename, "res/criteres.csv");
         
         MethodStrategy method = new PrometheeTwo();
         FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();

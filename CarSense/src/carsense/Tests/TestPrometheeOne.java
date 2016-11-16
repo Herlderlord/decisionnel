@@ -26,7 +26,7 @@ public class TestPrometheeOne {
         
         // -- Test de PROMETHEE I
         String filename = "res/voiture.csv";
-        Problem problem = Builder.createProblemVoiture(filename);
+        Problem problem = Builder.createProblemVoiture(filename, "res/criteres.csv");
         
         MethodStrategy method = new PrometheeOne();
         FunctionPreferenceStrategy functionPreference = new VoieBasiqueStrategy();

@@ -26,8 +26,8 @@ public class TestPrometheeTwo {
     public static void main(String args[]) throws IOException {
         
         // -- Test de PROMETHEE II
-        String filename = "monFichier.csv";
-        Problem problem = Builder.createProblemVoiture(filename);
+        String filename = "monFichier.csv", filename1 = "monFichier1.csv";
+        Problem problem = Builder.createProblemVoiture(filename, filename1);
         
         MethodStrategy method = new PrometheeTwo();
         FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();

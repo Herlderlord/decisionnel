@@ -12,7 +12,6 @@ package carsense.Modele;
 public final class Voiture {    
     // TODO : Ajoutez tous les attributs d'une voiture.
     private String nom;
-    
     private double prix;
     private double vitesse_max;
     private double conso_moyenne;

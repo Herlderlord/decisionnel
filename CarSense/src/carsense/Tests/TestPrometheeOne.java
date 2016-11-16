@@ -23,8 +23,8 @@ public class TestPrometheeOne {
     public static void main(String [] args) throws IOException {
         
         // -- Test de PROMETHEE I
-        String filename = "monFichier.csv";
-        Problem problem = Builder.createProblemVoiture(filename);
+        String filename = "monFichier.csv", filename1 = "monFichier1.csv";
+        Problem problem = Builder.createProblemVoiture(filename, filename1);
         
         MethodStrategy method = new PrometheeOne();
         FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();

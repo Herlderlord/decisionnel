@@ -7,9 +7,8 @@ package carsense.Modele;
 
 import carsense.Process.Builder;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -18,16 +17,20 @@ import java.util.List;
 public class Problem {
     
     public List<Voiture> voitures;
+    
     public List<Integer> poids;
     public Integer poidsTotal;
     
-    public Problem(List<Voiture> vList, List<Integer> intList) {
+    public Map<String, MethodeList> map;
+    
+    public Problem(List<Voiture> vList, List<Integer> intList, Map<String, MethodeList> map) {
         voitures = vList;
         poids = intList;
         poidsTotal = 0;
         poids.forEach((p) -> {
             poidsTotal += p;
         });
+        this.map = map;        
     }
     
     public void print() {
@@ -38,12 +41,16 @@ public class Problem {
             System.out.print (p+"\t");
         });
         System.out.println("Total="+poidsTotal);
+        map.forEach( (K,m) -> { 
+            System.out.print(K+" : ");
+            m.print(); 
+            System.out.println();
+        });
     }
     
     public static void main(String[]args) throws IOException {
-        Problem p = Builder.createProblemVoiture("res/voiture.csv");
+        Problem p = Builder.createProblemVoiture("res/voiture.csv", "res/criteres.csv");
         p.print();
     }
-    
     
 }

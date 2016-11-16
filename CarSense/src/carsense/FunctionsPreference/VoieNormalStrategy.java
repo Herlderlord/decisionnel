@@ -5,13 +5,20 @@
  */
 package carsense.FunctionsPreference;
 
+import carsense.Modele.Problem;
+
 /**
  *
  * @author mathi
  */
 public class VoieNormalStrategy implements FunctionPreferenceStrategy {
     
-    public double[][] calculPreference() {
+    
+    private double seuil;
+    
+    @Override
+    public double[][] calculPreference(Problem problem) {
+        
         
         
         return null; 

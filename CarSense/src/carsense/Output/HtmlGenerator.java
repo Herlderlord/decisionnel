@@ -7,18 +7,23 @@ package carsense.Output;
 
 import carsense.Output.*;
 import carsense.Methods.*;
+import carsense.Modele.Voiture;
+import java.util.Iterator;
 
 /**
  *
  * @author mathi
  */
-public class HtmlGenerator {
+public class HtmlGenerator implements OutputGenerator {
     
-    public String generateHtml(PrometheeOne promethee) {
+    public String generate(PrometheeOne promethee) {
+        
+        
+        
         return "Output de promethee One. ";
     }
     
-    public String generateHtml(PrometheeTwo promethee) {
+    public String generate(PrometheeTwo promethee) {
         return "Output de promethee Two. ";
     }
 }

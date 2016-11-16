@@ -11,6 +11,8 @@ import carsense.Process.Builder;
 import carsense.FunctionsPreference.*;
 import carsense.Methods.*;
 import carsense.Output.HtmlGenerator;
+import carsense.Output.OutputGenerator;
+import carsense.Output.StringGenerator;
 import carsense.Tests.*;
 import java.io.IOException;
 
@@ -23,16 +25,16 @@ public class TestPrometheeOne {
     public static void main(String [] args) throws IOException {
         
         // -- Test de PROMETHEE I
-        String filename = "monFichier.csv", filename1 = "monFichier1.csv";
-        Problem problem = Builder.createProblemVoiture(filename, filename1);
+        String filename = "res/voiture.csv";
+        Problem problem = Builder.createProblemVoiture(filename);
         
         MethodStrategy method = new PrometheeOne();
-        FunctionPreferenceStrategy functionPreference = new VoieNormalStrategy();
+        FunctionPreferenceStrategy functionPreference = new VoieBasiqueStrategy();
         
-        Result result = method.calcul(problem, functionPreference);
+        method.calcul(problem, functionPreference);
         
-        HtmlGenerator htmlGenerator = new HtmlGenerator();
-        htmlGenerator.generateHtml((PrometheeOne)method);
+        OutputGenerator outputGenerator = new StringGenerator();
+        System.out.println(outputGenerator.generate((PrometheeOne)method));
 
         
     }

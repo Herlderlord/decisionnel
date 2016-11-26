@@ -5,8 +5,10 @@
  */
 package carsense.Modele;
 
+import carsense.Modele.seuil.MethodeList;
 import carsense.Process.Builder;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,26 @@ public class Problem {
             m.print(); 
             System.out.println();
         });
+    }
+    
+    @Override
+    public String toString() {
+        String tmp = "";
+        for(Voiture v : voitures) {
+            tmp += v+"\n";
+        }
+        for (Integer p : poids) {
+            tmp += p+"\t";
+        }
+        tmp += "\nTotal="+poidsTotal+"\n";
+        for(Map.Entry <String,MethodeList> entry : map.entrySet()){
+            tmp += entry.getKey()+" : ";
+            for(String str : entry.getValue().getList()) {
+                tmp += "\t"+str;
+            }
+            tmp += "\n";
+        }
+        return tmp;
     }
     
     public static void main(String[]args) throws IOException {

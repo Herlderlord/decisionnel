@@ -3,17 +3,22 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Tests/TestPrometheeTwo.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/SeuilPreferenceList.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/ModeDefSeuilList.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/Voiture.java</file>
             <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Tests/Borda.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Tests/TestPrometheeOne.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/MethodeList.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/gui/FXMLCarSense.java</file>
             <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Methods/Borda.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/Problem.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/SeuilIndifferenceList.java</file>
-            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/SensPreferenceList.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/seuil/SensPreferenceList.java</file>
             <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Process/Builder.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/DataProblem.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/seuil/SeuilIndifferenceList.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/gui/controller/MainFrameController.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Tests/TestPrometheeTwo.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/seuil/ModeDefSeuilList.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/seuil/SeuilPreferenceList.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Tests/TestPrometheeOne.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/Problem.java</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/gui/fxml/MainFrame.fxml</file>
+            <file>file:/C:/Users/dem_l/Desktop/s3-application%20specialisee%20informatique%20decisionnelle/decisionnel/CarSense/src/carsense/Modele/seuil/MethodeList.java</file>
         </group>
     </open-files>
 </project-private>

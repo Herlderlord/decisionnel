@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package carsense.Modele;
+package carsense.Modele.seuil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,5 +27,9 @@ public class MethodeList {
         list.forEach ( (s) -> {
                 System.out.print("\t"+s);
         });
+    }
+    
+    public List<String> getList() {
+        return list;
     }
 }

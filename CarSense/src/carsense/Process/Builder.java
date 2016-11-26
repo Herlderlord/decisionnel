@@ -3,12 +3,12 @@ package carsense.Process;
 
 import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
-import carsense.Modele.SeuilIndifferenceList;
-import carsense.Modele.MethodeList;
-import carsense.Modele.ModeDefSeuilList;
-import carsense.Modele.SensPreferenceList;
-import carsense.Modele.SeuilPreferenceList;
-import carsense.Modele.SeuilVetoList;
+import carsense.Modele.seuil.SeuilIndifferenceList;
+import carsense.Modele.seuil.MethodeList;
+import carsense.Modele.seuil.ModeDefSeuilList;
+import carsense.Modele.seuil.SensPreferenceList;
+import carsense.Modele.seuil.SeuilPreferenceList;
+import carsense.Modele.seuil.SeuilVetoList;
 import carsense.Modele.Voiture;
 import java.io.File;
 import java.io.FileInputStream;

@@ -3,19 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package carsense.Modele;
-
-import java.util.ArrayList;
-import java.util.List;
+package carsense.Modele.seuil;
 
 /**
  *
  * @author dem_l
  */
-public class SeuilPreferenceList extends MethodeList {
-        public SeuilPreferenceList (int t) {
+public class SensPreferenceList extends MethodeList {
+    public SensPreferenceList (int t) {
         super(t);
     }
-    
     
 }

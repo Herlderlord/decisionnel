@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="474.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
+   <children>
+      <VBox id="mainVBox" fx:id="mainVBox" layoutX="10.0" layoutY="18.0" prefHeight="495.0" prefWidth="441.0">
+         <children>
+            <Pane id="choixFichiers_pane" fx:id="choixFichiers_pane" prefHeight="120.0" prefWidth="340.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="393.0" text="Configuration">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="55.0" text="Données voitures" />
+                  <Label layoutX="14.0" layoutY="83.0" text="Données critères" />
+                  <TextField id="donneesVoitures_field" fx:id="donneesVoitures_field" editable="false" layoutX="119.0" layoutY="51.0" prefHeight="25.0" prefWidth="220.0" />
+                  <TextField id="donneesCriteres_field" fx:id="donneesCriteres_field" editable="false" layoutX="119.0" layoutY="79.0" prefHeight="25.0" prefWidth="220.0" />
+                  <Button id="selectionVoitures_button" fx:id="selectionVoitures_button" layoutX="349.0" layoutY="51.0" mnemonicParsing="false" onAction="#selectionVoitures_evt" text="Fichier..." />
+                  <Button id="selectionCriteres_button" fx:id="selectionCriteres_button" layoutX="349.0" layoutY="79.0" mnemonicParsing="false" onAction="#selectionCriteres_evt" text="Fichier..." />
+               </children>
+            </Pane>
+            <Pane id="choixMethodes_pane" prefHeight="100.0" prefWidth="340.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="17.0" layoutY="4.0" prefHeight="20.0" prefWidth="393.0" text="Choix de la méthode">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Button id="prometheeOne_button" fx:id="prometheeOne_button" layoutX="14.0" layoutY="58.0" mnemonicParsing="false" onAction="#prometheeOne_evt" prefHeight="25.0" prefWidth="129.0" text="Prométhée I" />
+                  <Button id="prometheeTwo_button" fx:id="prometheeTwo_button" layoutX="156.0" layoutY="58.0" mnemonicParsing="false" onAction="#prometheeTwo_evt" prefHeight="25.0" prefWidth="129.0" text="Prométhée II" />
+                  <Button id="borda_button" fx:id="borda_button" layoutX="297.0" layoutY="58.0" mnemonicParsing="false" onAction="#borda_evt" prefHeight="25.0" prefWidth="129.0" text="Borda" />
+                  <Label id="methodeSelectionnee_label" fx:id="methodeSelectionnee_label" layoutX="17.0" layoutY="33.0" prefHeight="17.0" prefWidth="393.0" text="Aucune méthode sélectionnée." />
+               </children>
+            </Pane>
+            <Pane id="sortieMethodes_pane" prefHeight="240.0" prefWidth="441.0">
+               <children>
+                  <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="393.0" text="Sortie">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextArea id="output_area" fx:id="output_area" layoutX="14.0" layoutY="38.0" prefHeight="190.0" prefWidth="413.0" />
+               </children>
+            </Pane>
+            <Button id="generer_button" fx:id="generer_button" mnemonicParsing="false" onAction="#generer_evt" prefHeight="25.0" prefWidth="437.0" text="Générer" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

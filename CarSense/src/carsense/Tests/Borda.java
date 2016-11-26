@@ -5,7 +5,10 @@
  */
 package carsense.Tests;
 
+import carsense.Modele.Voiture;
+import carsense.Process.Builder;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -15,6 +18,9 @@ public class Borda {
     public static void main(String [] args) throws IOException {
         
         //Systeme de votes ??
+        List<Voiture> voitures = Builder.createProblemVoiture("res/voitures.csv","res/criteres.csv").voitures;
+        carsense.Methods.Borda b = new carsense.Methods.Borda(voitures);
+        b.remplissage();
         
         
         

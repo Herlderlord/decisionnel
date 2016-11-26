@@ -5,6 +5,8 @@
  */
 package carsense.Modele;
 
+import java.io.OutputStream;
+
 /**
  *
  * @author idolon
@@ -44,6 +46,14 @@ public final class Voiture {
                 vitesse_max+" Conso_moy="+conso_moyenne+" Dist_freinage="+
                 dist_freinage+" Confort="+confort+" Volume_coffre="+
                 volume_coffre+" Acceleration="+acceleration);
+    }
+    
+    @Override
+    public String toString() {
+        return "[Nom="+nom+" Prix="+prix+" Vitesse_max="+
+                vitesse_max+" Conso_moy="+conso_moyenne+" Dist_freinage="+
+                dist_freinage+" Confort="+confort+" Volume_coffre="+
+                volume_coffre+" Acceleration="+acceleration;
     }
     
     /**

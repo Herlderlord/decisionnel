@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package carsense.Modele;
+package carsense.Modele.seuil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,10 +12,8 @@ import java.util.List;
  *
  * @author dem_l
  */
-public class SeuilVetoList extends MethodeList {
-    public SeuilVetoList (int t) {
+public class SeuilIndifferenceList extends MethodeList {
+    public SeuilIndifferenceList (int t) {
         super(t);
     }
-    
-    
 }

@@ -21,7 +21,7 @@ import java.util.Map;
  *
  * @author mathi
  */
-public class PrometheeTwo extends MethodStrategy {
+public class PrometheeTwo extends Promethee {
     
     public PrometheeOne prometheeOne = null; 
     public double[] fluxNet = null;

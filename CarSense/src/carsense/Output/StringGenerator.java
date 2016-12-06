@@ -5,18 +5,24 @@
  */
 package carsense.Output;
 
+import carsense.Methods.Borda;
+import carsense.Methods.MethodStrategy;
 import carsense.Methods.PrometheeOne;
 import carsense.Methods.PrometheeTwo;
 import carsense.Modele.Voiture;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
  * @author idolon
  */
 public class StringGenerator implements OutputGenerator {
+
     
-    
+    @Override
     public String generate(PrometheeOne promethee) {
         // Déclaration du contenu à retourner.
         String content = "";
@@ -82,6 +88,7 @@ public class StringGenerator implements OutputGenerator {
         return content;
     }
     
+    @Override
     public String generate(PrometheeTwo promethee) {
         
         double[] fluxNet = promethee.fluxNet;
@@ -117,6 +124,22 @@ public class StringGenerator implements OutputGenerator {
             i++;
         }
         content += "]\n";
+        return content;
+    }
+    
+    @Override
+    public String generate (Borda borda) {
+        String content = "Liste voitures\n";
+        
+        List<Voiture> voitures = borda.classement;
+        Iterator <Voiture> it = voitures.iterator();
+        int i = 0; 
+        while (it.hasNext()) {
+            Voiture v = it.next();
+            content +=  "[ " + v.getNom() + " : " + borda.finalScores[i] + " ]\n";
+            i++;
+        }
+        
         return content;
     }
 }

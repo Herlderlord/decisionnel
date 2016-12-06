@@ -5,6 +5,7 @@
  */
 package carsense.Output;
 
+import carsense.Methods.Borda;
 import carsense.Methods.PrometheeOne;
 import carsense.Methods.PrometheeTwo;
 
@@ -17,4 +18,6 @@ public interface OutputGenerator {
     public String generate(PrometheeOne promethee);
     
     public String generate(PrometheeTwo promethee);
+    
+    public String generate(Borda borda);
 }

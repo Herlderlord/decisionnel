@@ -25,7 +25,7 @@ import java.util.Map;
  *
  * @author mathi
  */
-public class PrometheeOne extends MethodStrategy {
+public class PrometheeOne extends Promethee {
     
     
     public double[] fluxPositif; 
@@ -34,9 +34,13 @@ public class PrometheeOne extends MethodStrategy {
     public List<Voiture> classementNegatif;
     
     public PrometheeOne() {
-        
     }
     
+    /**
+     * 
+     * @param problem
+     * @param function 
+     */
     public void calcul(Problem problem, FunctionPreferenceStrategy function) {
         
         double[][] result = function.calculPreference(problem);

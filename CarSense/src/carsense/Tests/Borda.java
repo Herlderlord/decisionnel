@@ -20,7 +20,6 @@ public class Borda {
         //Systeme de votes ??
         List<Voiture> voitures = Builder.createProblemVoiture("res/voitures.csv","res/criteres.csv").voitures;
         carsense.Methods.Borda b = new carsense.Methods.Borda(voitures);
-        b.remplissage();
         
         
         

@@ -17,13 +17,14 @@ import java.util.Iterator;
 public class HtmlGenerator implements OutputGenerator {
     
     public String generate(PrometheeOne promethee) {
-        
-        
-        
         return "Output de promethee One. ";
     }
     
     public String generate(PrometheeTwo promethee) {
         return "Output de promethee Two. ";
+    }
+    
+    public String generate(Borda borda) {
+        return "Ouput de borda";
     }
 }

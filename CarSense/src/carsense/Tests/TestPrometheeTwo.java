@@ -34,8 +34,9 @@ public class TestPrometheeTwo {
         
         MethodStrategy method = new PrometheeTwo();
         FunctionPreferenceStrategy functionPreference = new VoieBasiqueStrategy();
+        ((PrometheeTwo) method).function = functionPreference; 
+        method.calcul(problem);
         
-        method.calcul(problem, functionPreference);
         
         OutputGenerator outputGenerator = new StringGenerator();
         System.out.println(outputGenerator.generate((PrometheeTwo)method));

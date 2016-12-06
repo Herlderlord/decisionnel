@@ -21,6 +21,6 @@ public abstract class MethodStrategy {
      * @param function
      * @return
      */
-    public abstract void calcul(Problem problem, FunctionPreferenceStrategy function); 
+    public abstract void calcul(Problem problem); 
 
 }

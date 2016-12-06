@@ -41,11 +41,17 @@ public class FXMLCarSense extends Application {
             }
         });
         */
+        controller = new MainFrameController();
+        
         stage.getIcons().add(new Image("file:img/carsense_icon.png"));
         stage.setTitle("Car Sense - CERI M2");
-        Pane myPane = (Pane)FXMLLoader.load(getClass().getResource("fxml/MainFrame.fxml"));
+        
+        FXMLLoader loader = new FXMLLoader();
+        
+        Pane myPane = (Pane)loader.load(getClass().getResource("fxml/MainFrame.fxml"));
         Scene myScene = new Scene(myPane);
         stage.setScene(myScene);
+        controller.setStage (stage);
         stage.show();
     }
 

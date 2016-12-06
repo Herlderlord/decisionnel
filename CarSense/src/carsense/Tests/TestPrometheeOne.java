@@ -30,8 +30,8 @@ public class TestPrometheeOne {
         
         MethodStrategy method = new PrometheeOne();
         FunctionPreferenceStrategy functionPreference = new VoieBasiqueStrategy();
-        
-        method.calcul(problem, functionPreference);
+        ((PrometheeOne) method).function = functionPreference;
+        method.calcul(problem);
         
         OutputGenerator outputGenerator = new StringGenerator();
         System.out.println(outputGenerator.generate((PrometheeOne)method));

@@ -11,7 +11,9 @@ import carsense.Modele.Voiture;
 import java.util.Iterator;
 
 /**
- *
+ * Voiture.html 
+ * Gui : ajout bouton 
+ * 
  * @author mathi
  */
 public class HtmlGenerator implements OutputGenerator {

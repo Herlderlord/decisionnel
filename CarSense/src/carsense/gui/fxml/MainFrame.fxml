@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="474.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="543.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
    <children>
       <VBox id="mainVBox" fx:id="mainVBox" layoutX="10.0" layoutY="18.0" prefHeight="495.0" prefWidth="441.0">
          <children>
@@ -39,17 +39,26 @@
                   <Label id="methodeSelectionnee_label" fx:id="methodeSelectionnee_label" layoutX="17.0" layoutY="33.0" prefHeight="17.0" prefWidth="393.0" text="Aucune méthode sélectionnée." />
                </children>
             </Pane>
-            <Pane id="sortieMethodes_pane" prefHeight="240.0" prefWidth="441.0">
+            <Pane id="sortieMethodes_pane" prefHeight="213.0" prefWidth="441.0">
                <children>
                   <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="393.0" text="Sortie">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <TextArea id="output_area" fx:id="output_area" layoutX="14.0" layoutY="38.0" prefHeight="190.0" prefWidth="413.0" />
+                  <TextArea id="output_area" fx:id="output_area" layoutX="14.0" layoutY="34.0" prefHeight="161.0" prefWidth="413.0" />
                </children>
             </Pane>
-            <Button id="generer_button" fx:id="generer_button" mnemonicParsing="false" onAction="#generer_evt" prefHeight="25.0" prefWidth="437.0" text="Générer" />
+            <TitledPane animated="false" prefHeight="92.0" prefWidth="441.0" text="Format d'exportation">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="439.0">
+                     <children>
+                        <Button id="generer_button" fx:id="generer_button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#generer_evt" prefHeight="25.0" prefWidth="92.0" text="Texte" />
+                        <Button id="genererHtml_button" fx:id="genererHtml_button" layoutX="132.0" layoutY="14.0" mnemonicParsing="false" onAction="#genererHtml_evt" prefHeight="25.0" prefWidth="88.0" text="HTML" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </TitledPane>
          </children>
       </VBox>
    </children>

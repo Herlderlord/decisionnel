@@ -153,7 +153,7 @@ public class Borda extends MethodStrategy {
         // Creating classment List 
         i = 0; 
         for (Map.Entry<Voiture, Double> entry : scores.entrySet()) {
-            System.out.println(entry.getKey().getNom());
+            //System.out.println(entry.getKey().getNom());
             this.classement.add(entry.getKey());
             this.finalScores[i] = entry.getValue();
             i++; 

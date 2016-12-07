@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="543.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="575.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
    <children>
-      <VBox id="mainVBox" fx:id="mainVBox" layoutX="10.0" layoutY="18.0" prefHeight="495.0" prefWidth="441.0">
+      <VBox id="mainVBox" fx:id="mainVBox" layoutX="7.0" layoutY="14.0" prefHeight="547.0" prefWidth="441.0">
          <children>
-            <Pane id="choixFichiers_pane" fx:id="choixFichiers_pane" prefHeight="120.0" prefWidth="340.0">
+            <Pane id="choixFichiers_pane" fx:id="choixFichiers_pane" prefHeight="152.0" prefWidth="441.0">
                <children>
                   <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="20.0" prefWidth="393.0" text="Configuration">
                      <font>
@@ -24,6 +24,7 @@
                   <TextField id="donneesCriteres_field" fx:id="donneesCriteres_field" editable="false" layoutX="119.0" layoutY="79.0" prefHeight="25.0" prefWidth="220.0" />
                   <Button id="selectionVoitures_button" fx:id="selectionVoitures_button" layoutX="349.0" layoutY="51.0" mnemonicParsing="false" onAction="#selectionVoitures_evt" text="Fichier..." />
                   <Button id="selectionCriteres_button" fx:id="selectionCriteres_button" layoutX="349.0" layoutY="79.0" mnemonicParsing="false" onAction="#selectionCriteres_evt" text="Fichier..." />
+                  <Label id="config_status" fx:id="config_status" alignment="BASELINE_CENTER" layoutX="14.0" layoutY="113.0" prefHeight="25.0" prefWidth="393.0" />
                </children>
             </Pane>
             <Pane id="choixMethodes_pane" prefHeight="100.0" prefWidth="340.0">
@@ -49,9 +50,9 @@
                   <TextArea id="output_area" fx:id="output_area" layoutX="14.0" layoutY="34.0" prefHeight="161.0" prefWidth="413.0" />
                </children>
             </Pane>
-            <TitledPane animated="false" prefHeight="92.0" prefWidth="441.0" text="Format d'exportation">
+            <TitledPane animated="false" prefHeight="75.0" prefWidth="441.0" text="Format d'exportation">
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="439.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="41.0" prefWidth="439.0">
                      <children>
                         <Button id="generer_button" fx:id="generer_button" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#generer_evt" prefHeight="25.0" prefWidth="92.0" text="Texte" />
                         <Button id="genererHtml_button" fx:id="genererHtml_button" layoutX="132.0" layoutY="14.0" mnemonicParsing="false" onAction="#genererHtml_evt" prefHeight="25.0" prefWidth="88.0" text="HTML" />

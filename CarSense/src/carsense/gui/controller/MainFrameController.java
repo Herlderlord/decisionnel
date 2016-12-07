@@ -19,9 +19,14 @@ import carsense.Output.StringGenerator;
 import carsense.Process.Builder;
 import carsense.gui.FXMLCarSense;
 import java.awt.Desktop;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URI;
@@ -31,6 +36,9 @@ import java.net.URLEncoder;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -39,6 +47,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -71,7 +80,7 @@ public class MainFrameController implements Initializable {
             prometheeOne_button, prometheeTwo_button, borda_button,
             generer_button, genererHtml_button;
     @FXML
-    public Label methodeSelectionnee_label;
+    public Label methodeSelectionnee_label, config_status;
     @FXML
     public TextArea output_area;
     
@@ -161,7 +170,7 @@ public class MainFrameController implements Initializable {
             generator = new StringGenerator();
             Alert alert = new Alert(null);
             alert.setTitle("Générer");
-            if (fichierVoitures.isEmpty() || fichierCriteres.isEmpty() || methode.isEmpty()) {
+            if (problem==null || methode.isEmpty()) {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setHeaderText(null);
                 String contentText = "";
@@ -182,7 +191,6 @@ public class MainFrameController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setContentText("Fichiers de configuration :\nFichier voitures : "+fichierVoitures+"\nFichier critères : "+fichierCriteres);
                 alert.showAndWait();*/
-                
                 
                 String text = "";
                 switch (methode) {
@@ -276,6 +284,5 @@ public class MainFrameController implements Initializable {
                 }
             }
         }
-
     }
 }

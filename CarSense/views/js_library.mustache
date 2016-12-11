@@ -1,0 +1,205 @@
+
+<script type="text/javascript">
+
+/*
+Il faut une structure de données particulière qui puisse être
+utilisée directement ici.
+On va faire un exemple ici.
+*/
+var data = [];
+var fields = {{{fieldsJSON}}};
+var filetitle = "{{title}}";
+
+data = {{{dataJSON}}};
+/**
+ * 
+ * @param {type} data
+ * @param {type} fieldX
+ * @param {type} fieldY
+ * @param {type} container
+ * @returns {undefined} 
+ */
+function constructFileTitle($filetitle) {
+    $("#filetitle").html(filetitle);
+}
+/**
+ *
+ *
+ */
+function constructFieldSelectForTable(fields, idSelector, idTable) {
+
+  var htmlValue = "";
+  var i = 0;
+  for(var field in fields) {
+    // htmlValue += "<tr><td>Je test un truc simple ! </td></tr>";
+    htmlValue += "<tr><td><input id=\"inputFieldSelectForTable" + i + "\" type=\"checkbox\" value=\"" + fields[field] + "\"><label for=\"inputFieldSelectForTable" + i + "\">" + fields[field] + "</label></td></tr>";
+    i++;
+  }
+  $("#" + idSelector + " tr").remove();
+  $("#" + idSelector).append(htmlValue);
+  $("#" + idSelector + " input").attr('checked', true);
+
+  $("#" + idSelector + " input").change(function(event) {
+    var fieldToChange = $(event.target).attr("value");
+    var i = 0;
+    for(var index in fields) {
+      if(fields[index] == fieldToChange) {
+        break;
+      }
+      i++;
+    }
+    i++;
+    console.log(i);
+    if(this.checked) {
+      $('#' + idTable + ' td:nth-child(' + i + ')').show();
+      $('#' + idTable + ' th:nth-child(' + i + ')').show();
+    }
+    else {
+      $('#' + idTable + ' td:nth-child(' + i + ')').hide();
+      $('#' + idTable + ' th:nth-child(' + i + ')').hide();
+    }
+  });
+
+}
+/**
+ *
+ *
+ *
+ */
+function constructTable(data, fields, idTable) {
+  // THEAD
+  var htmlHead = "";
+  for(var field in fields) {
+    htmlHead += "<th>" + fields[field] + "</th>"
+  }
+  var htmlHead = "<thead><tr>" + htmlHead + "</tr></thead>"
+
+  // TBODY
+  var htmlBody = "";
+  for(var name in data) {
+    htmlBody += "<tr>";
+    for(var i = 0; i < fields.length; i++) {
+      htmlBody += "<td>" + data[name][fields[i]] + "</td>";
+    }
+    htmlBody += "</tr>";
+  }
+
+  var htmlBody = "<tbody>" + htmlBody + "</tbody>";
+
+  var htmlValue = htmlHead + htmlBody;
+  $("#" + idTable).html(htmlValue);
+}
+
+/**
+ *
+ *
+ *
+ */
+function constructSelector(fields, idSelector) {
+  var options = "";
+
+  for(var field in fields) {
+    options += "<option value=\"" + fields[field] + "\">" + fields[field] + "</option>";
+  }
+  $("#" + idSelector).html(options);
+}
+
+
+
+/**
+ *
+ *
+ *
+ */
+function displayGraph(data, fieldX, fieldY, container) {
+
+  displayGraph.myBubbleChart = null;
+  var data_bubble = [];
+  for(var name in data) {
+    data_bubble.push({
+      label: name,
+      x: data[name][fieldX],
+      y: data[name][fieldY],
+      r: 10
+    });
+    console.log(data[name][fieldX]);
+  }
+  var data = {
+    datasets: [
+        {
+            label: 'Jeu de données',
+            data: data_bubble,
+            backgroundColor:"#FF6384",
+            hoverBackgroundColor: "#FF6384",
+        }]
+  };
+
+  var options = {
+    title: {
+      display: "true",
+      text: "Graphique des données sur deux variables"
+    },
+    tooltips: {
+      enabled: true,
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return " " + data.datasets[0].data[tooltipItem.index].label;
+          }
+      }
+
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            min: 0
+          },
+          scaleLabel: {
+            display: true,
+            labelString: fieldY
+          }
+        }
+      ],
+      xAxes: [
+        {
+          ticks: {
+            min: 0
+          },
+          scaleLabel: {
+            display: true,
+            labelString: fieldX
+          }
+        }
+      ]
+    }
+
+  };
+  if(displayGraph.myBubbleChart !== null) {
+    displayGraph.myBubbleChart.destroy();
+  }
+  myBubbleChart = new Chart(container,{
+      type: 'bubble',
+      data: data,
+      options: options
+  });
+
+}
+
+function updateGraph() {
+  displayGraph(data, $("#selectVarX option:selected").val(), $("#selectVarY option:selected").val(), document.getElementById("graph"));
+}
+
+$(document).foundation();
+$(document).ready(function() {
+  constructFieldSelectForTable(fields, "fieldSelectForTable", "dataTable");
+  constructTable(data, fields, "dataTable");
+  constructSelector(fields, "selectVarX");
+  constructSelector(fields, "selectVarY");
+  constructFileTitle(filetitle);
+  displayGraph(data, "vitesseMaximale", "prix", document.getElementById("graph"));
+  $("#selectVarX").change(updateGraph);
+
+  $("#selectVarY").change(updateGraph);
+});
+
+</script>

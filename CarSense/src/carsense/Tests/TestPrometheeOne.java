@@ -33,7 +33,7 @@ public class TestPrometheeOne {
         ((PrometheeOne) method).function = functionPreference;
         method.calcul(problem);
         
-        OutputGenerator outputGenerator = new StringGenerator();
+        OutputGenerator outputGenerator = new HtmlGenerator();
         System.out.println(outputGenerator.generate((PrometheeOne)method));
 
         

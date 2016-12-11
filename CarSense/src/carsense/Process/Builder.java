@@ -82,7 +82,9 @@ public class Builder {
         // TODO: Next version => Matrix : Max, min, max, min etc .. 
         
         // TODO create problem.
-        result = new DataProblem (voitureList.size(), attr.size());
+        
+        result = new DataProblem ();
+        /*
         //Traiter result.titles
         String [] attrTab = new String [attr.size()];
         for(int j=0;j<attrTab.length;j++) {
@@ -106,6 +108,7 @@ public class Builder {
             isMaxPrbTab[j] = isMaxProblemList.get(j);
         }
         result.setIsMaxProblem(isMaxPrbTab);
+        */
         return result;
     }
     

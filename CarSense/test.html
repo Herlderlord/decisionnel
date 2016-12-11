@@ -23,7 +23,7 @@
     </div>
     <div class="row">
       <div class="columns larget-12">
-        <h1>Fichier X</h1>
+        <h1 id="filetitle">Fichier X</h1>
       </div>
     </div>
     <div class="row">
@@ -97,18 +97,19 @@
       </div>
     </div>
 
-    <script type="text/javascript">
+ 
+<script type="text/javascript">
 
 /*
 Il faut une structure de données particulière qui puisse être
 utilisée directement ici.
 On va faire un exemple ici.
 */
-
 var data = [];
 var fields = ["classement", "nom", "vitesseMaximale", "prix", "truc", "Flux_positif"];
+var filetitle = "Un titre au hasard";
 
-data = {
+data =  {
   "voiture1": {
     "classement": 1,
     "nom": "voiture1",
@@ -143,7 +144,17 @@ data = {
     "Flux_positif": 7
   }
 };
-
+/**
+ * 
+ * @param {type} data
+ * @param {type} fieldX
+ * @param {type} fieldY
+ * @param {type} container
+ * @returns {undefined} 
+ */
+function constructFileTitle($filetitle) {
+    $("#filetitle").html(filetitle);
+}
 /**
  *
  *
@@ -317,15 +328,14 @@ $(document).ready(function() {
   constructTable(data, fields, "dataTable");
   constructSelector(fields, "selectVarX");
   constructSelector(fields, "selectVarY");
+  constructFileTitle(filetitle);
   displayGraph(data, "vitesseMaximale", "prix", document.getElementById("graph"));
-
   $("#selectVarX").change(updateGraph);
 
   $("#selectVarY").change(updateGraph);
 });
 
-
-    </script>
+</script>
 
 
   </body>

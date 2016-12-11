@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CarSense : Fichier html</title>
+
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" media="screen" title="Foundation">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css" media="screen" title="vis js css file">
+    <!-- Compressed JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+    <script type="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js"></script>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">CarSense</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns larget-12">
+        <h1 id="filetitle">Fichier X</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns large-3">
+        <div class="">
+          <table class="table" id="fieldSelectForTable">
+            <tr>
+              <td><input id="inputFieldSelectForTable" type="checkbox"><label for="checkbox1">Champs 1</label></td>
+            </tr>
+            <tr>
+              <td><input id="checkbox1" type="checkbox"><label for="checkbox1">Champs 2</label></td>
+            </tr>
+            <tr>
+              <td><input id="checkbox1" type="checkbox"><label for="checkbox1">Champs 3</label></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="columns large-9">
+
+        <table class="table" id="dataTable">
+          <thead>
+            <tr>
+              <th>
+                Title
+              </th>
+              <th>
+                Value 1
+              </th>
+              <th>
+                Value 2
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Name
+              </td>
+              <td>
+                Value
+              </td>
+              <td>
+                Value
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-9">
+        <canvas class="" id="graph">
+
+        </canvas>
+      </div>
+      <div class="columns large-3">
+        <label for="selectVarX">Variable X</label>
+        <select class="" id="selectVarX" name="">
+          <option value="">Var 1</option>
+          <option value="">Var 2</option>
+          <option value="">Var 3</option>
+        </select>
+        <label for="selectVarY">Variable Y</label>
+        <select class="" id="selectVarY" name="">
+          <option value="">Var 1</option>
+          <option value="">Var 2</option>
+          <option value="">Var 3</option>
+        </select>
+      </div>
+    </div>
+
+ {{>js_library}}
+
+
+  </body>
+</html>

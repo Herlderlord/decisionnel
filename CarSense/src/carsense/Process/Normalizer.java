@@ -32,15 +32,5 @@ public class Normalizer {
      */
     public void transformInMaxProblem(DataProblem data) {
         
-        for(int i = 0; i < data.getIsMaxProblem().length; i++) {
-            if(!data.getIsMaxProblem()[i]) {
-                
-                for(int y = 0; y < data.getValues().length; y++) {
-                    
-                }
-                // On doit inverser chaque valeur du problème.
-                
-            } 
-        }
     }
 }

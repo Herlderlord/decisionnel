@@ -1,7 +1,10 @@
 package carsense.Modele;
 
 import carsense.Process.Builder;
+import carsense.Process.DataProblemBuilder;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +24,8 @@ public class DataProblem {
     /**
      * Data with titles and values 
      */
-    public List<Map<String, String>> data;
+    public List<EntryData> data;
+    public List<String> fields;
     public boolean[] isMaxProblem;
     public double[] poids;
     public double[] seuilIndifference;
@@ -36,33 +40,81 @@ public class DataProblem {
      * @param size_y 
      */
     public DataProblem() {
-        this.data = new LinkedList<Map<String, String>>();
+        this.data = new LinkedList<EntryData>();
+        this.fields = new ArrayList<String>();
     }
     
-    public void print() {
+    
+    public String toString() {
+        // Valeur à retourner
+        String value = "";
+        
+        // -- Number of data. 
+        value += "Number of lines : " + this.data.size() + "\n";
+        
+        // -- Fields 
+        value += "Field : [";
+        Iterator<String> it = fields.iterator();
+        while(it.hasNext()) {
+            String field = it.next();
+            value += field + ", ";
+        }
+        value += "]\n";
+        
+        // -- 10 data lines maximum 
+        Iterator<EntryData> itData = data.iterator();
+        int i = 0;
+        while(itData.hasNext() && i < 10) {
+            EntryData data = itData.next(); 
+            value += data.toString() + "\n";
+            i++;
+        }
+        value += "\n";
+        
+        // -- On fera plus tard le reste.      
+        // Poids
+        value += "Poids : [";
+        for(i=0; i < poids.length; i++) {
+            value += poids[i] + ", ";
+        }
+        value += "]\n";
+        
+        // Seuil Indifference
+        value += "Indifference : ["; 
+        for(i=0; i < this.seuilIndifference.length; i++) {
+            value += this.seuilIndifference[i] + ", ";
+        }
+        value += "]\n";
+        
+        // Preference
+        value += "Pref : ["; 
+        for(i=0; i < this.seuilPref.length; i++) {
+            value += this.seuilPref[i] + ", ";
+        }
+        value += "]\n";
+        
+        // Seuil Veto
+        value += "Veto : ["; 
+        for(i=0; i < this.seuilVeto.length; i++) {
+            value += this.seuilVeto[i] + ", ";
+        }
+        value += "]\n";
+        
+        return value;
     }
-
     
     public static void main(String[]args) throws IOException {
-        DataProblem dataProblem = Builder.createProblem("res/voiture.csv");
-        dataProblem.print();
+        /*
+        TODO: 
+            Tester avec des données de test, sans passer par un fichier.
+            Tester affichage.
+        */
         
         /*
-        
-        Comment faire les données de manière à être le plus générique. 
-        
-        fieldname1, fieldname2, fieldname3 ... 
-        value1.1, value1.2, value1.3 ... 
-        value2.1, value2.2, value2.3 ...
-        
-        On récupère les titres et on récupère les valeurs. 
-        On doit pouvoir vérifier si on a les titres ou pas à la première ligne
-        sinon on génère automatiquement les nouveaux titres.
-        
-        Le mieux est d'avoir un csv en entrée pour les données. Un truc basique
-        
-        On se base sur un jeu de données. 
-        La définition du problème. 
+        Je veux que mes données soient mises dans quoi ? 
+            Une liste avec tous les champs pourquoi pas ? 
+            On garde bien une map sinon. 
+            Et je récupère à chaque fois un double.
         */
     }
 }

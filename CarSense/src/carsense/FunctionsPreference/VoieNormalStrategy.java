@@ -5,6 +5,7 @@
  */
 package carsense.FunctionsPreference;
 
+import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 
 /**
@@ -12,8 +13,6 @@ import carsense.Modele.Problem;
  * @author mathi
  */
 public class VoieNormalStrategy implements FunctionPreferenceStrategy {
-    
-    
     private double seuil;
     
     @Override
@@ -22,5 +21,10 @@ public class VoieNormalStrategy implements FunctionPreferenceStrategy {
         
         
         return null; 
+    }
+    
+    @Override
+    public double[][] calculPreference(DataProblem problem) {
+        return null;
     }
 }

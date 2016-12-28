@@ -5,6 +5,7 @@
  */
 package carsense.FunctionsPreference;
 
+import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 
 /**
@@ -14,4 +15,5 @@ import carsense.Modele.Problem;
 public interface FunctionPreferenceStrategy {
     
     public double[][] calculPreference(Problem problem); 
+    public double[][] calculPreference(DataProblem problem);
 }

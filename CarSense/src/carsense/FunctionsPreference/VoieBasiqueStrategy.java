@@ -5,6 +5,7 @@
  */
 package carsense.FunctionsPreference;
 
+import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 import carsense.Modele.Voiture;
 import java.util.Iterator;
@@ -81,5 +82,10 @@ public class VoieBasiqueStrategy implements FunctionPreferenceStrategy {
             i_ref++;
         }
         return result;
+    }
+    
+    @Override
+    public double[][] calculPreference(DataProblem problem) {
+        return null;
     }
 }

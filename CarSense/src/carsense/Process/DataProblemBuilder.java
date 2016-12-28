@@ -7,6 +7,7 @@ package carsense.Process;
 
 import Utils.CsvParser;
 import carsense.Modele.DataProblem;
+import carsense.Modele.EntryData;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
@@ -36,31 +38,62 @@ public class DataProblemBuilder {
     
     /**
      * 
+     * @param dataFilePath
+     * @param problemDescriptionFilePath 
+     */
+    public void builderDataProblemBuilder(String dataFilePath, String problemDescriptionFilePath) {
+        this.builderDataProblemBuilder(dataFilePath, problemDescriptionFilePath, "name");
+    }
+    
+    /**
+     * 
      * @param dataProblem
      * @param dataFileName
      * @param problemDescriptionFileName 
      */
-    public void builderDataProblemBuilder(String dataFilePath, String problemDescriptionFilePath) {
+    public void builderDataProblemBuilder(String dataFilePath, String problemDescriptionFilePath, String fieldId) {
         
-        // Data file
+        // # Data file
         FileInputStream fis = null;
         try {
-            // data file
+            // -- Preparing Csv Reader
             this.dataProblem = new DataProblem();
             CsvParser csvParser = new CsvParser();
             File file = new File (dataFilePath);
             fis = new FileInputStream(file);
             InputStreamReader isr = new InputStreamReader(fis);
+            
             Iterator<Map<String, String>> dataIt = csvParser.parseAsMaps(isr);
-            boolean getTitles = false;
-            
-            
             int i = 0; 
+            boolean fieldsCreated = false;
+            
+            // -- Process each line 
             while(dataIt.hasNext()) {
                 Map<String, String> line = dataIt.next();
-                this.dataProblem.data.add(line);
+                
+                Map<String, Double> newLine = new HashMap<String, Double>();
+                
+                // -- Create EntryData
+                EntryData entryData = new EntryData();
+                for (Map.Entry<String, String> entry : line.entrySet()) {
+                    // -- Create Fields 
+                    if(!fieldsCreated)
+                        this.dataProblem.fields.add(entry.getKey());
+                    // -- Generate Name
+                    if(entry.getKey() == fieldId) {
+                        entryData.name = entry.getValue();
+                    } else {
+                        entryData.generateName();
+                    }
+                    entryData.data.put(entry.getKey(), Double.parseDouble(entry.getValue()));        
+                }
+                
+                this.dataProblem.data.add(entryData);
+                fieldsCreated = true;
+                // Add data line to problem
             }
-        // Problem Description file
+            
+        // Exception
         } catch (FileNotFoundException ex) {
             Logger.getLogger(DataProblemBuilder.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
@@ -72,7 +105,7 @@ public class DataProblemBuilder {
         }
        
         
-        
+        // Problem description file.
         try {
             // Problem description JSON
             File file = new File (problemDescriptionFilePath);
@@ -128,14 +161,19 @@ public class DataProblemBuilder {
      * 
      * @return 
      */
-    DataProblem getDataProblem() {
+    public DataProblem getDataProblem() {
         return this.dataProblem;
     }
     
     public static void main(String[] args) {
         // Tests for this class
         DataProblemBuilder dataBuilder = new DataProblemBuilder(); 
-        
         dataBuilder.builderDataProblemBuilder("res/dataVoitures.csv", "res/problemDescription.json");
+        System.out.println(dataBuilder.dataProblem);
+    
+        /*
+            On doit pouvoir dire quel champs correspond à un nom d'entité.(id)
+        
+        */
     }
 }

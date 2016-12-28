@@ -8,6 +8,7 @@ package carsense.Methods;
 import carsense.Modele.Problem;
 import carsense.Modele.Result;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+import carsense.Modele.DataProblem;
 
 /**
  *
@@ -16,11 +17,16 @@ import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 public abstract class MethodStrategy {
         
     /**
-     *
+     * Calcul avec l'ancien type de données
      * @param problem
-     * @param function
      * @return
      */
     public abstract void calcul(Problem problem); 
+    
+    /**
+     * Calcul avec les données génériques
+     * @param problem 
+     */
+    public abstract void calcul(DataProblem problem);
 
 }

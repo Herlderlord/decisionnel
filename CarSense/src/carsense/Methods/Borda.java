@@ -7,6 +7,7 @@ package carsense.Methods;
 
 import Utils.MapUtil;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 import carsense.Modele.Result;
 import carsense.Modele.Voiture;
@@ -143,10 +144,6 @@ public class Borda extends MethodStrategy {
                 scores.put(entry.getKey(), new Double(entry.getValue() + scores.get(entry.getKey())));
         }
         
-        
-        
-        
-        
         // Sorting by score
         scores = MapUtil.sortByValue(scores, false);
     
@@ -158,6 +155,11 @@ public class Borda extends MethodStrategy {
             this.finalScores[i] = entry.getValue();
             i++; 
         }
+    }
+    
+    @Override
+    public void calcul(DataProblem problem) {
+        
     }
     
     

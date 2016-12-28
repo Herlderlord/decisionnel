@@ -7,6 +7,7 @@ package carsense.Methods;
 
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 import carsense.FunctionsPreference.VoieBasiqueStrategy;
+import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 
 /**
@@ -18,17 +19,29 @@ public abstract class Promethee extends MethodStrategy {
     public FunctionPreferenceStrategy function = null; 
     
     /**
-     * 
+     * Calcul avec les anciennes données
      * @param problem
      * @param function 
      */
     public abstract void calcul(Problem problem, FunctionPreferenceStrategy function); 
     
     /**
-     * 
-     * @param problem 
+     * Calcul avec les données génériques
+     * @param problem
+     * @param function 
      */
+    public abstract void calcul(DataProblem problem, FunctionPreferenceStrategy function); 
+    
+    @Override
     public void calcul(Problem problem) {
+        if(function == null) {
+            this.calcul(problem, new VoieBasiqueStrategy());
+        } else 
+            this.calcul(problem, function);
+    }
+    
+    @Override
+    public void calcul(DataProblem problem) {
         if(function == null) {
             this.calcul(problem, new VoieBasiqueStrategy());
         } else 

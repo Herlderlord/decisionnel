@@ -9,6 +9,7 @@ import Utils.MapUtil;
 import carsense.Modele.Problem;
 import carsense.Modele.Result;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
+import carsense.Modele.DataProblem;
 import carsense.Modele.Voiture;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -27,6 +28,8 @@ public class PrometheeTwo extends Promethee {
     public double[] fluxNet = null;
     public List<Voiture> classement = null;
      
+    
+    @Override
     public void calcul(Problem problem, FunctionPreferenceStrategy function) {
         
         double[][] result = function.calculPreference(problem);
@@ -78,6 +81,12 @@ public class PrometheeTwo extends Promethee {
         {
             classement.add(entry.getKey());
         }
+        
+    }
+    
+    
+    @Override
+    public void calcul(DataProblem problem, FunctionPreferenceStrategy function) {
         
     }
     

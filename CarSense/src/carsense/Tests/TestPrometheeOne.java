@@ -34,8 +34,6 @@ public class TestPrometheeOne {
         method.calcul(problem);
         
         OutputGenerator outputGenerator = new HtmlGenerator();
-        System.out.println(outputGenerator.generate((PrometheeOne)method));
-
-        
+        System.out.println(outputGenerator.generate((PrometheeOne)method));        
     }
 }

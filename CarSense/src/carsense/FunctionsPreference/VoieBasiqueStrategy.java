@@ -6,6 +6,7 @@
 package carsense.FunctionsPreference;
 
 import carsense.Modele.DataProblem;
+import carsense.Modele.EntryData;
 import carsense.Modele.Problem;
 import carsense.Modele.Voiture;
 import java.util.Iterator;
@@ -86,6 +87,38 @@ public class VoieBasiqueStrategy implements FunctionPreferenceStrategy {
     
     @Override
     public double[][] calculPreference(DataProblem problem) {
+        // Get some information 
+        EntryData entry_ref = null; 
+        Iterator<EntryData> entry_ref_it = problem.data.iterator();
+        int nbEntries = problem.data.size();
+        int i_ref = 0;
+        
+        // Creating result array
+        double[][] result = new double[nbEntries][nbEntries];
+        
+        // Get each line
+        while(entry_ref_it.hasNext()) {
+            entry_ref = entry_ref_it.next();
+            EntryData entry_compared = null;
+            Iterator<EntryData> entry_compared_it = problem.data.iterator();
+            int i_compared = 0;
+            
+            // Compared whith each other line
+            while(entry_compared_it.hasNext()) {
+                entry_compared = entry_compared_it.next();
+                
+                // if not the same
+                if(entry_compared != entry_ref) {
+                    result[i_compared][i_ref] = 0;
+                    
+                }
+                i_compared ++;
+                
+            }
+            
+            i_ref ++;
+        }
+                // Parcourir chaque valeur de la ligne pour comparer avec l'autre
         return null;
     }
 }

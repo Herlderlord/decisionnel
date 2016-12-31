@@ -13,6 +13,7 @@ import carsense.Modele.Result;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 import carsense.FunctionsPreference.VoieBasiqueStrategy;
 import carsense.Modele.DataProblem;
+import carsense.Modele.EntryData;
 import carsense.Modele.Voiture;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,15 +34,18 @@ public class PrometheeOne extends Promethee {
     public double[] fluxNegatif;
     public List<Voiture> classementPositif; 
     public List<Voiture> classementNegatif;
+    public List<EntryData> classementPositifGeneric; 
+    public List<EntryData> classementNegatifGeneric; 
     
     public PrometheeOne() {
     }
     
     @Override
     public void calcul(Problem problem, FunctionPreferenceStrategy function) {
+        classementPositifGeneric = new LinkedList<EntryData>(); 
+        classementNegatifGeneric = new LinkedList<EntryData>();
         
         double[][] result = function.calculPreference(problem);
-        
         
         // Creation des flux positifs et négatifs.
         fluxPositif = new double[result.length]; 
@@ -83,14 +87,12 @@ public class PrometheeOne extends Promethee {
         
         
         // For Positif
-        for (Map.Entry<Voiture, Double> entry : map_positif.entrySet())
-        {
+        for (Map.Entry<Voiture, Double> entry : map_positif.entrySet()) {
             classementPositif.add(entry.getKey());
         }
         
         // For Negatif
-        for (Map.Entry<Voiture, Double> entry : map_negatif.entrySet())
-        {
+        for (Map.Entry<Voiture, Double> entry : map_negatif.entrySet()) {
             classementNegatif.add(entry.getKey());
         }
     }
@@ -99,6 +101,58 @@ public class PrometheeOne extends Promethee {
     @Override
     public void calcul(DataProblem problem, FunctionPreferenceStrategy function) {
         
+        double[][] result = function.calculPreference(problem);
+        
+        // Creation des flux positifs et négatifs.
+        fluxPositif = new double[result.length]; 
+        fluxNegatif = new double[result.length];
+       
+            
+        Arrays.fill(fluxPositif, 0);
+        Arrays.fill(fluxNegatif, 0);
+        
+        for(int i = 0; i < result.length; i++) {
+            for(int j=0; j < result[i].length; j++) {
+                fluxPositif[j] += result[i][j];  
+                fluxNegatif[i] += result[i][j];
+            }
+        }
+        
+        // Création des liaisons entre voiture et flux.
+        Map<EntryData, Double> map_positif = new HashMap<EntryData, Double>();
+        Map<EntryData, Double> map_negatif = new HashMap<EntryData, Double>();
+        
+        Iterator<EntryData> it_entry = problem.data.iterator();
+        
+        int i = 0; 
+        for(EntryData data : problem.data) {
+            map_positif.put(data, new Double(fluxPositif[i]));
+            map_negatif.put(data, new Double(fluxNegatif[i]));
+            i++;
+        }
+        
+        // Sort Maps 
+        map_positif = MapUtil.sortByValue(map_positif, false);
+        map_negatif = MapUtil.sortByValue(map_negatif, true);
+        
+        
+        // Transform maps into Classements.
+        classementPositif = new LinkedList<Voiture>(); 
+        classementNegatif = new LinkedList<Voiture>();
+        
+        classementPositifGeneric = new LinkedList<EntryData>(); 
+        classementNegatifGeneric = new LinkedList<EntryData>();
+        
+        
+        // For Positif
+        for (Map.Entry<EntryData, Double> entry : map_positif.entrySet()) {
+            classementPositifGeneric.add(entry.getKey());
+        }
+        
+        // For Negatif
+        for (Map.Entry<EntryData, Double> entry : map_negatif.entrySet()) {
+            classementNegatifGeneric.add(entry.getKey());
+        }
     }
     
     

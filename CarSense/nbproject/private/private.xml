@@ -3,8 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Ludovic/NetbeansProjects/decisionnel/CarSense/src/carsense/Methods/Borda.java</file>
-            <file>file:/C:/Users/Ludovic/NetbeansProjects/decisionnel/CarSense/src/carsense/gui/controller/MainFrameController.java</file>
+            <file>file:/home/idolon/NetBeansProjects/decisionnel/CarSense/res/voiture.csv</file>
+            <file>file:/home/idolon/NetBeansProjects/decisionnel/CarSense/src/carsense/Tests/TestMethodBasique.java</file>
+            <file>file:/home/idolon/NetBeansProjects/decisionnel/CarSense/res/problemDescription.json</file>
+            <file>file:/home/idolon/NetBeansProjects/decisionnel/CarSense/src/carsense/gui/controller/MainFrameController.java</file>
+            <file>file:/home/idolon/NetBeansProjects/decisionnel/CarSense/src/carsense/Methods/PrometheeOne.java</file>
+            <file>file:/home/idolon/NetBeansProjects/decisionnel/CarSense/src/carsense/FunctionsPreference/VoieBasiqueStrategy.java</file>
         </group>
     </open-files>
 </project-private>

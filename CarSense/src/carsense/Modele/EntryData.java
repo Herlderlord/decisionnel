@@ -6,6 +6,7 @@
 package carsense.Modele;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -41,8 +42,14 @@ public class EntryData {
         String value = "";
         
         value += "[" + name + ", ";
-        for (Map.Entry<String, Double> entry : this.data.entrySet()) {
-             value += entry.getValue() + ", ";
+        
+        
+        Iterator<String> it_field = this.fields.iterator();
+        
+        
+        while(it_field.hasNext()) {
+            String field = it_field.next();
+            value += this.data.get(field) + ", ";
         }
         value += "]";
         return value;

@@ -13,6 +13,7 @@ import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 import carsense.Output.HtmlGenerator;
 import carsense.Output.OutputGenerator;
+import carsense.Output.StringGenerator;
 import carsense.Process.Builder;
 import carsense.Process.DataProblemBuilder;
 
@@ -25,9 +26,8 @@ public class TestPrometheeOneGeneric {
     public static void main(String[] args) {
         
         // -- Test de PROMETHEE I
-        String filename = "res/voiture.csv";
         DataProblemBuilder builder = new DataProblemBuilder(); 
-        builder.builderDataProblemBuilder(filename, filename);
+        builder.builderDataProblemBuilder("res/dataVoitures.csv", "res/problemDescription.json");
         DataProblem problem = builder.getDataProblem();
         
         MethodStrategy method = new PrometheeOne();
@@ -35,7 +35,7 @@ public class TestPrometheeOneGeneric {
         ((PrometheeOne) method).function = functionPreference;
         method.calcul(problem);
         
-        OutputGenerator outputGenerator = new HtmlGenerator();
+        OutputGenerator outputGenerator = new StringGenerator();
         System.out.println(outputGenerator.generate((PrometheeOne)method));
     }
 }

@@ -86,6 +86,7 @@ public class DataProblemBuilder {
                         entryData.generateName();
                     }
                     entryData.data.put(entry.getKey(), Double.parseDouble(entry.getValue()));        
+                    entryData.fields = this.dataProblem.fields;
                 }
                 
                 this.dataProblem.data.add(entryData);
@@ -149,6 +150,7 @@ public class DataProblemBuilder {
                 this.dataProblem.seuilVeto[i] = seuilVeto.getDouble(i);
             }
             
+            this.dataProblem.calculPoidsTotal();
         } catch (Exception ex) {
             Logger.getLogger(DataProblemBuilder.class.getName()).log(Level.SEVERE, null, ex);
         }

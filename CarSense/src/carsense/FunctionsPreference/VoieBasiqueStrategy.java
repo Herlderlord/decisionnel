@@ -9,7 +9,15 @@ import carsense.Modele.DataProblem;
 import carsense.Modele.EntryData;
 import carsense.Modele.Problem;
 import carsense.Modele.Voiture;
+import carsense.Process.Builder;
+import carsense.Process.DataProblemBuilder;
+import java.io.IOException;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -111,14 +119,80 @@ public class VoieBasiqueStrategy implements FunctionPreferenceStrategy {
                 if(entry_compared != entry_ref) {
                     result[i_compared][i_ref] = 0;
                     
+                    // Get values 
+                    Iterator<String> field_compared = entry_compared.fields.iterator();
+                    Iterator<Double> data_compared = entry_compared.data.values().iterator();
+                    Iterator<String> field_ref = entry_ref.fields.iterator();
+                    Iterator<Double> data_ref = entry_ref.data.values().iterator();
+                    
+                    int i_poids = 0; 
+                    
+                    while(field_compared.hasNext()) {
+                        Double double_compared = entry_compared.data.get(field_compared.next());
+                        Double double_ref = entry_ref.data.get(field_ref.next());
+                        
+                        if(double_ref.doubleValue() > double_compared.doubleValue()) 
+                            result[i_compared][i_ref] += problem.poids[i_poids] / problem.poidsTotal;
+                        
+                        i_poids++; 
+                    }
+                
                 }
                 i_compared ++;
-                
             }
-            
             i_ref ++;
         }
-                // Parcourir chaque valeur de la ligne pour comparer avec l'autre
-        return null;
+        // Parcourir chaque valeur de la ligne pour comparer avec l'autre
+        return result;
+    }
+    
+    /**
+     * 
+     * @param args 
+     */
+    public static void main(String [] args) {
+        try {
+            // With Voiture
+            Problem problemVoiture = Builder.createProblemVoiture("res/voiture.csv", "res/probleme.csv");
+            VoieBasiqueStrategy fonction = new VoieBasiqueStrategy(); 
+            double [][] result_voiture = fonction.calculPreference(problemVoiture);
+            
+            // With Data Problem
+            DataProblemBuilder builder = new DataProblemBuilder();
+            builder.builderDataProblemBuilder("res/dataVoitures.csv", "res/problemDescription.json");
+            
+            DataProblem problem = builder.getDataProblem();
+            double [][] result = fonction.calculPreference(problem);
+            
+            System.out.println("Premier problème : "); 
+            System.out.println(problemVoiture); 
+            
+            System.out.println(""); 
+            System.out.println(problem);
+            
+            
+            System.out.println("Résultat ancien jeu de données");
+            // Premier résultat 
+            for(int i=0; i < result_voiture.length; i++) {
+                for(int j=0; j < result_voiture[i].length; j++) {
+                    System.out.println(result_voiture[i][j] + ",");
+                }
+                System.out.println("");
+            }
+            
+            System.out.println("Résultat nouveau jeu de données");
+            // Deuxième résultat
+            for(int i=0; i < result.length; i++) {
+                for(int j=0; j < result.length; j++) {
+                    System.out.println(result[i][j] + ",");
+                }
+                System.out.println("");
+            }
+            
+           
+        } catch (IOException ex) {
+            Logger.getLogger(VoieBasiqueStrategy.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }

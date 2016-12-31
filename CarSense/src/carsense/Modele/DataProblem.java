@@ -32,6 +32,8 @@ public class DataProblem {
     public double[] seuilPref;
     public double[] seuilVeto;
     
+    public double poidsTotal;
+    
     
     /**
      * Init each variable of DataProblem 
@@ -48,6 +50,7 @@ public class DataProblem {
     public String toString() {
         // Valeur à retourner
         String value = "";
+        
         
         // -- Number of data. 
         value += "Number of lines : " + this.data.size() + "\n";
@@ -73,6 +76,7 @@ public class DataProblem {
         
         // -- On fera plus tard le reste.      
         // Poids
+        value += "Poids Total : " + this.poidsTotal + "\n";
         value += "Poids : [";
         for(i=0; i < poids.length; i++) {
             value += poids[i] + ", ";
@@ -103,6 +107,15 @@ public class DataProblem {
         return value;
     }
     
+    /**
+     * 
+     */
+    public void calculPoidsTotal() {
+        this.poidsTotal = 0;
+        for(int i = 0; i < this.poids.length; i++) {
+            this.poidsTotal += this.poids[i];
+        } 
+    }
     public static void main(String[]args) throws IOException {
         /*
         TODO: 

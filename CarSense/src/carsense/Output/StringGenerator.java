@@ -9,6 +9,7 @@ import carsense.Methods.Borda;
 import carsense.Methods.MethodStrategy;
 import carsense.Methods.PrometheeOne;
 import carsense.Methods.PrometheeTwo;
+import carsense.Modele.EntryData;
 import carsense.Modele.Voiture;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -84,6 +85,54 @@ public class StringGenerator implements OutputGenerator {
                 content += voiture.getNom();
         }
         content += "]\n";
+        
+        
+        // Classement Positif 
+        content += "Classement Positif Générique : \n";
+        Iterator<EntryData> it_positif_generic = promethee.classementPositifGeneric.iterator();
+        
+        content += "[";
+        counter = 0;
+        while(it_positif_generic.hasNext()) {
+            EntryData entry = it_positif_generic.next();
+            if(it_positif_generic.hasNext()) {
+                content += entry.name;
+                if(fluxPositif[counter] == fluxPositif[counter+1]) 
+                    content += " = ";
+                else 
+                    content += " > ";
+            }
+            else 
+                content += entry.name;
+            counter ++;
+        }
+        content += "]\n";
+        
+        
+        // Classement Négatif
+        content += "Classement Negatif Générique :\n";
+        Iterator<EntryData> it_negatif_generic = promethee.classementNegatifGeneric.iterator();
+        
+        content += "[";
+        counter = 0;
+        while(it_negatif_generic.hasNext()) {
+            EntryData entry = it_negatif_generic.next();
+            if(it_negatif_generic.hasNext()) {
+                content += entry.name;    
+                if(fluxNegatif[counter] == fluxNegatif[counter+1]) {
+                    content += " = ";
+                }
+                else {
+                    content += " > ";
+                }
+            }
+            else {
+                content += entry.name;
+            }
+            counter ++;
+        }
+        content += "]\n";
+        
         
         return content;
     }

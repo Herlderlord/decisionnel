@@ -33,6 +33,15 @@ public class PrometheeTwo extends Promethee {
     
     @Override
     public void calcul(Problem problem, FunctionPreferenceStrategy function) {
+        
+        this.fields = new ArrayList<String>();
+        this.fields.add("Prix");
+        this.fields.add("VitesseMax"); 
+        this.fields.add("CoffreMax");
+        this.fields.add("ConsoMoyenne"); 
+        this.fields.add("DistanceDeFreinage");
+        this.fields.add("Confort");
+        
         this.classementGeneric = new LinkedList<EntryData>();
         this.fluxNet = this.calculFluxNet(function.calculPreference(problem));
         
@@ -56,8 +65,7 @@ public class PrometheeTwo extends Promethee {
         classement = new LinkedList<Voiture>(); 
         
         // For Positif
-        for (Map.Entry<Voiture, Double> entry : map_net.entrySet())
-        {
+        for (Map.Entry<Voiture, Double> entry : map_net.entrySet()) {
             classement.add(entry.getKey());
         }
         
@@ -65,6 +73,8 @@ public class PrometheeTwo extends Promethee {
     
     @Override
     public void calcul(DataProblem problem, FunctionPreferenceStrategy function) {
+        
+        this.fields = problem.fields;
         this.classement = new ArrayList<Voiture>();
         double[] fluxNet = this.calculFluxNet(function.calculPreference(problem));
         

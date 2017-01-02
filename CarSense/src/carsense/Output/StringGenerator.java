@@ -22,6 +22,7 @@ import java.util.Map;
  */
 public class StringGenerator implements OutputGenerator {
 
+    public String title;
     
     @Override
     public String generate(PrometheeOne promethee) {
@@ -210,5 +211,13 @@ public class StringGenerator implements OutputGenerator {
         content += "]";
         
         return content;
+    }
+    
+    public String getTitle() {
+        return this.title; 
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

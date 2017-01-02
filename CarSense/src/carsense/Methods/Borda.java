@@ -42,6 +42,7 @@ public class Borda extends MethodStrategy {
     
     public List<Voiture> classement;
     public double [] finalScores;
+    public List<String> fields;
     
     
     // Generic Attributes 
@@ -102,6 +103,15 @@ public class Borda extends MethodStrategy {
 
     @Override
     public void calcul(Problem problem) {
+        
+        this.fields = new ArrayList<String>();
+        this.fields.add("Prix");
+        this.fields.add("VitesseMax"); 
+        this.fields.add("CoffreMax");
+        this.fields.add("ConsoMoyenne"); 
+        this.fields.add("DistanceDeFreinage");
+        this.fields.add("Confort");
+        
         this.voitures = problem.voitures;
         this.remplissage();
         int nbVoitures = this.voitures.size();
@@ -178,6 +188,7 @@ public class Borda extends MethodStrategy {
     
     @Override
     public void calcul(DataProblem problem) {
+        this.fields = problem.fields;
         // Filing each critere with their entries values.
         for(EntryData entry : problem.data) {
             for(String field : entry.fields) {

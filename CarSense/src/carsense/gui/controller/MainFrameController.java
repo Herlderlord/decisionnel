@@ -199,6 +199,7 @@ public class MainFrameController implements Initializable {
                 alert.showAndWait();*/
                 
                 String text = "";
+                generator.setTitle(fichierVoitures + " et " + fichierConfiguration);
                 switch (methode) {
                     case "prometheeOne":
                         strategy = new PrometheeOne();
@@ -266,17 +267,20 @@ public class MainFrameController implements Initializable {
                     generator = new HtmlGenerator();
                     switch (methode) {
                         case "prometheeOne":
+                            generator.setTitle("Données Promethee I");
                             strategy = new PrometheeOne();
                             strategy.calcul(problem);
                             text = generator.generate((PrometheeOne)strategy);
                             break;
                         case "prometheeTwo":
                             strategy = new PrometheeTwo();
+                            generator.setTitle("Données Promethee II");
                             strategy.calcul(problem);
                             text = generator.generate((PrometheeTwo)strategy);
                             break;
                         case "borda":
                             strategy = new Borda();
+                            generator.setTitle("Données Borda");
                             ((Borda)strategy).calcul(problem);
                             text = generator.generate((Borda)strategy);
                             break;

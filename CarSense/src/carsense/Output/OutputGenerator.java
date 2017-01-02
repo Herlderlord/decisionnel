@@ -20,4 +20,8 @@ public interface OutputGenerator {
     public String generate(PrometheeTwo promethee);
     
     public String generate(Borda borda);
+    
+    public String getTitle();
+    
+    public void setTitle(String title);
 }

@@ -27,6 +27,8 @@ import java.util.Iterator;
  */
 public class HtmlGenerator implements OutputGenerator {
     
+    public String title;
+    
     private String generateString(HashMap<String, Object> scopes, String mustacheFile) {
        
         // Preparing Writer 
@@ -86,17 +88,131 @@ public class HtmlGenerator implements OutputGenerator {
         
         scopes.put("fieldsJSON", jsObjectFields);
         scopes.put("dataJSON", jsObjectData);
-        scopes.put("title", "Un titre au hasard");
+        
+        if(this.getTitle() == null) 
+            scopes.put("title", "Données");
+        else 
+            scopes.put("title", this.getTitle());
         
         // Generating html string value
         return generateString(scopes, "views/html_output_prometheeOne.mustache");
     }
     
     public String generate(PrometheeTwo promethee) {
-        return "Output de promethee Two. ";
+        
+        // Preparings Scope variables
+        HashMap<String, Object> scopes = new HashMap<String, Object>();
+        scopes.put("name", "Mustache");
+        
+        // Add field Scope
+        String jsObjectFields = "[\"nom\", \"classement\",";
+        int counter = promethee.fields.size();
+        for(String field : promethee.fields) {
+            counter --;
+            jsObjectFields += "\"" + field + "\"";
+            if(counter != 0) {
+                jsObjectFields += ", ";
+            }
+        }
+        jsObjectFields += "]";
+        
+        // Data JSON
+        String jsObjectData = "{";
+        counter = promethee.classementGeneric.size();
+        for(EntryData entry : promethee.classementGeneric) {
+            counter --;
+            jsObjectData += "\"" + entry.name + "\":{" 
+                    + "classement:" + (promethee.classementGeneric.size() - counter) + ","
+                    + "nom:\"" + entry.name + "\",";
+            int subCounter = promethee.fields.size();
+            for(String field : promethee.fields) {
+                subCounter --;
+                jsObjectData += field + ":" + entry.data.get(field);
+                if(subCounter != 0) {
+                    jsObjectData += ", ";
+                }
+            }
+            jsObjectData += "}";
+            if(counter != 0) {
+                jsObjectData += ", ";
+            }
+        }
+        jsObjectData += "}";
+        
+        scopes.put("fieldsJSON", jsObjectFields);
+        scopes.put("dataJSON", jsObjectData);
+        if(this.getTitle() == null) 
+            scopes.put("title", "Données");
+        else 
+            scopes.put("title", this.getTitle());
+        
+        
+        // Generating html string value
+        return generateString(scopes, "views/html_output_prometheeOne.mustache");
     }
     
     public String generate(Borda borda) {
-        return "Ouput de borda";
+        
+        // Preparings Scope variables
+        HashMap<String, Object> scopes = new HashMap<String, Object>();
+        scopes.put("name", "Mustache");
+        
+        // Add field Scope
+        String jsObjectFields = "[\"nom\", \"classement\",";
+        int counter = borda.fields.size();
+        for(String field : borda.fields) {
+            counter --;
+            jsObjectFields += "\"" + field + "\"";
+            if(counter != 0) {
+                jsObjectFields += ", ";
+            }
+        }
+        jsObjectFields += "]";
+        
+        
+        
+        // Data JSON
+        String jsObjectData = "{";
+        counter = borda.classementGeneric.size();
+        for(EntryData entry : borda.classementGeneric) {
+            counter --;
+            jsObjectData += "\"" + entry.name + "\":{" 
+                    + "classement:" + (borda.classementGeneric.size() - counter) + ","
+                    + "nom:\"" + entry.name + "\",";
+            int subCounter = borda.fields.size();
+            for(String field : borda.fields) {
+                subCounter --;
+                jsObjectData += field + ":" + entry.data.get(field);
+                if(subCounter != 0) {
+                    jsObjectData += ", ";
+                }
+            }
+            jsObjectData += "}";
+            if(counter != 0) {
+                jsObjectData += ", ";
+            }
+        }
+        jsObjectData += "}";
+        
+        scopes.put("fieldsJSON", jsObjectFields);
+        scopes.put("dataJSON", jsObjectData);
+        if(this.getTitle() == null) 
+            scopes.put("title", "Données");
+        else 
+            scopes.put("title", this.getTitle());
+        
+        
+        // Generating html string value
+        return generateString(scopes, "views/html_output_prometheeOne.mustache");
+    }
+    
+    @Override 
+    public String getTitle() {
+        return this.title; 
+    }
+    
+    @Override 
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

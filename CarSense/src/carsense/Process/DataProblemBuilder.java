@@ -76,17 +76,17 @@ public class DataProblemBuilder {
                 // -- Create EntryData
                 EntryData entryData = new EntryData();
                 for (Map.Entry<String, String> entry : line.entrySet()) {
-                    // -- Create Fields 
-                    if(!fieldsCreated)
-                        this.dataProblem.fields.add(entry.getKey());
                     // -- Generate Name
-                    if(entry.getKey() == fieldId) {
+                    if(entry.getKey().compareTo(fieldId) == 0) {
                         entryData.name = entry.getValue();
                     } else {
+                        // -- Create Fields 
+                        if(!fieldsCreated)
+                            this.dataProblem.fields.add(entry.getKey());
                         entryData.generateName();
+                        entryData.data.put(entry.getKey(), Double.parseDouble(entry.getValue()));        
+                        entryData.fields = this.dataProblem.fields;
                     }
-                    entryData.data.put(entry.getKey(), Double.parseDouble(entry.getValue()));        
-                    entryData.fields = this.dataProblem.fields;
                 }
                 
                 this.dataProblem.data.add(entryData);
@@ -175,7 +175,6 @@ public class DataProblemBuilder {
     
         /*
             On doit pouvoir dire quel champs correspond à un nom d'entité.(id)
-        
         */
     }
 }

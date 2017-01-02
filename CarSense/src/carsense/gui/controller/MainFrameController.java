@@ -205,7 +205,7 @@ public class MainFrameController implements Initializable {
                         text = generator.generate((PrometheeTwo)strategy);
                         break;
                     case "borda":
-                        strategy = new Borda(problem.voitures);
+                        strategy = new Borda();
                         ((Borda)strategy).calcul(problem); 
                         text = generator.generate((Borda)strategy);
                         break;
@@ -270,7 +270,7 @@ public class MainFrameController implements Initializable {
                             text = generator.generate((PrometheeTwo)strategy);
                             break;
                         case "borda":
-                            strategy = new Borda(problem.voitures);
+                            strategy = new Borda();
                             ((Borda)strategy).calcul(problem);
                             text = generator.generate((Borda)strategy);
                             break;

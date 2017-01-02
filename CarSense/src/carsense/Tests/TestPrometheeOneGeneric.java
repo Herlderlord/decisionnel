@@ -18,7 +18,9 @@ import carsense.Process.Builder;
 import carsense.Process.DataProblemBuilder;
 
 /**
- *
+ * Classe qui permet de tester la méthode Promethee I sur un jeu de données
+ * de base. 
+ * 
  * @author mathi
  */
 public class TestPrometheeOneGeneric {

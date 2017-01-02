@@ -139,7 +139,7 @@ public class StringGenerator implements OutputGenerator {
     
     @Override
     public String generate(PrometheeTwo promethee) {
-        
+        int counter = 0;
         double[] fluxNet = promethee.fluxNet;
         String content = "";
         
@@ -154,7 +154,7 @@ public class StringGenerator implements OutputGenerator {
         content += "Flux Net : " + message_net + "\n";
         
         // Classement Net
-        content += "Classement Negatif :\n";
+        content += "Classement Net :\n";
         Iterator<Voiture> it_net = promethee.classement.iterator();
         
         content += "[";
@@ -173,6 +173,19 @@ public class StringGenerator implements OutputGenerator {
             i++;
         }
         content += "]\n";
+        
+        // Classement Net générique 
+        content += "Classement Net Générique :\n"; 
+        counter = promethee.classementGeneric.size();
+        
+        content += "[";
+        for(EntryData entry : promethee.classementGeneric) {
+            content += entry.name;
+            if(--counter != 0) {
+                content += " > ";
+            }
+        }
+        content += "]";
         return content;
     }
     
@@ -188,6 +201,13 @@ public class StringGenerator implements OutputGenerator {
             content +=  "[ " + v.getNom() + " : " + borda.finalScores[i] + " ]\n";
             i++;
         }
+        content += "\n";
+        content += "Liste générique \n"; 
+        content += "[";
+        for(EntryData entry : borda.classementGeneric) {
+            content += entry.name + ", ";
+        }
+        content += "]";
         
         return content;
     }

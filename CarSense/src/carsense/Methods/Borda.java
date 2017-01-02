@@ -8,11 +8,13 @@ package carsense.Methods;
 import Utils.MapUtil;
 import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 import carsense.Modele.DataProblem;
+import carsense.Modele.EntryData;
 import carsense.Modele.Problem;
 import carsense.Modele.Result;
 import carsense.Modele.Voiture;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -37,13 +39,25 @@ public class Borda extends MethodStrategy {
     public Map<Voiture, Double> critere6;
     public Map<Voiture, Double> critere7;
     
+    
     public List<Voiture> classement;
     public double [] finalScores;
+    
+    
+    // Generic Attributes 
+    public List<EntryData> classementGeneric; 
+    
+    /**
+     * Cette liste nous permet d'avoir pour chaque critère le classement 
+     * des différentes entrées.
+     */
+    public Map<String,Map<EntryData, Double>> criteres;
+    
     /**
      * 
      * @param voitures 
      */
-    public Borda (List<Voiture> voitures) {
+    public Borda () {
         this.voitures = voitures;
         this.critere1 = new HashMap<> ();
         this.critere2 = new HashMap<> ();
@@ -53,6 +67,10 @@ public class Borda extends MethodStrategy {
         this.critere6 = new HashMap<> ();
         this.critere7 = new HashMap<> ();
         this.classement = new ArrayList<Voiture>();
+        
+        // Generic
+        this.criteres = new HashMap<String, Map<EntryData,Double>>();
+        this.classementGeneric = new LinkedList<EntryData>();
     }
     
     /**
@@ -84,6 +102,7 @@ public class Borda extends MethodStrategy {
 
     @Override
     public void calcul(Problem problem) {
+        this.voitures = problem.voitures;
         this.remplissage();
         int nbVoitures = this.voitures.size();
         int i=0;
@@ -159,6 +178,54 @@ public class Borda extends MethodStrategy {
     
     @Override
     public void calcul(DataProblem problem) {
+        // Filing each critere with their entries values.
+        for(EntryData entry : problem.data) {
+            for(String field : entry.fields) {
+                
+                // If critere classement not created
+                if(this.criteres.get(field) == null) {
+                    HashMap<EntryData, Double> entries = new HashMap<>();
+                    entries.put(entry, entry.data.get(field));
+                    this.criteres.put(field, entries);
+                } 
+                // If critere classement already created
+                else {
+                    this.criteres.get(field).put(entry, entry.data.get(field));
+                }
+            }
+        }
+        
+        // Sorting each critere by min or max 
+        int i = 0; 
+        for(String field : problem.fields) {
+            this.criteres.put(field, MapUtil.sortByValue(this.criteres.get(field), problem.isMaxProblem[i]));
+            i++;
+        }
+        
+        this.finalScores = new double[problem.data.size()]; 
+        
+        // Scoring 
+        Map<EntryData, Double> scoring; 
+        scoring = new HashMap<>();
+        
+        for(String field : problem.fields) {
+            for(Map.Entry<EntryData, Double> entry : this.criteres.get(field).entrySet()) {
+                if(scoring.get(entry.getKey()) == null)
+                    scoring.put(entry.getKey(), entry.getValue());
+                else
+                    scoring.put(entry.getKey(), new Double(entry.getValue() + scoring.get(entry.getKey())));
+            }
+        }
+        
+        // Sorting 
+        scoring = MapUtil.sortByValue(scoring, false);
+        
+        i = 0;
+        for (Map.Entry<EntryData, Double> entry : scoring.entrySet()) {
+            this.classementGeneric.add(entry.getKey());
+            this.finalScores[i] = entry.getValue(); 
+            i++;
+        }
         
     }
     

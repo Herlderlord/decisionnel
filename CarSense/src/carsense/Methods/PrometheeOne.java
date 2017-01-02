@@ -15,6 +15,7 @@ import carsense.FunctionsPreference.VoieBasiqueStrategy;
 import carsense.Modele.DataProblem;
 import carsense.Modele.EntryData;
 import carsense.Modele.Voiture;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -42,6 +43,14 @@ public class PrometheeOne extends Promethee {
     
     @Override
     public void calcul(Problem problem, FunctionPreferenceStrategy function) {
+        
+        this.fields = new ArrayList<String>();
+        this.fields.add("Prix");
+        this.fields.add("VitesseMax"); 
+        this.fields.add("CoffreMax");
+        this.fields.add("ConsoMoyenne"); 
+        this.fields.add("DistanceDeFreinage");
+        this.fields.add("Confort");
         classementPositifGeneric = new LinkedList<EntryData>(); 
         classementNegatifGeneric = new LinkedList<EntryData>();
         
@@ -100,7 +109,7 @@ public class PrometheeOne extends Promethee {
     
     @Override
     public void calcul(DataProblem problem, FunctionPreferenceStrategy function) {
-        
+        this.fields = problem.fields;
         double[][] result = function.calculPreference(problem);
         
         // Creation des flux positifs et négatifs.

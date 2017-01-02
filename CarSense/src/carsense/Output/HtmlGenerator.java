@@ -7,6 +7,7 @@ package carsense.Output;
 
 import carsense.Output.*;
 import carsense.Methods.*;
+import carsense.Modele.EntryData;
 import carsense.Modele.Voiture;
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
@@ -27,47 +28,7 @@ import java.util.Iterator;
 public class HtmlGenerator implements OutputGenerator {
     
     private String generateString(HashMap<String, Object> scopes, String mustacheFile) {
-        
-        // Test Basic Scope 
-        scopes.put("fieldsJSON", "[\"classement\", \"nom\", \"vitesseMaximale\", \"prix\", \"truc\", \"Flux_positif\"]");
-        scopes.put("title", "Un titre au hasard");
-        scopes.put("dataJSON", " {\n" +
-"  \"voiture1\": {\n" +
-"    \"classement\": 1,\n" +
-"    \"nom\": \"voiture1\",\n" +
-"    \"vitesseMaximale\": 200,\n" +
-"    \"prix\": 10,\n" +
-"    \"truc\": 100,\n" +
-"    \"Flux_positif\": 10\n" +
-"  },\n" +
-"  \"voiture2\": {\n" +
-"    \"classement\": 2,\n" +
-"    \"nom\": \"voiture2\",\n" +
-"    \"vitesseMaximale\": 100,\n" +
-"    \"prix\": 5,\n" +
-"    \"truc\": 80,\n" +
-"    \"Flux_positif\": 9\n" +
-"  },\n" +
-"  \"voiture3\": {\n" +
-"    \"classement\": 3,\n" +
-"    \"nom\": \"voiture3\",\n" +
-"    \"vitesseMaximale\": 300,\n" +
-"    \"prix\": 50,\n" +
-"    \"truc\": 80,\n" +
-"    \"Flux_positif\": 8\n" +
-"  },\n" +
-"\n" +
-"  \"voiture4\": {\n" +
-"    \"classement\": 4,\n" +
-"    \"nom\": \"voiture4\",\n" +
-"    \"vitesseMaximale\": 120,\n" +
-"    \"prix\": 20,\n" +
-"    \"truc\": 100,\n" +
-"    \"Flux_positif\": 7\n" +
-"  }\n" +
-"}");
-        
-        
+       
         // Preparing Writer 
         CharArrayWriter writer = new CharArrayWriter();
         String htmlValue = new String();
@@ -86,6 +47,46 @@ public class HtmlGenerator implements OutputGenerator {
         // Preparings Scope variables
         HashMap<String, Object> scopes = new HashMap<String, Object>();
         scopes.put("name", "Mustache");
+        
+        // Add field Scope
+        String jsObjectFields = "[\"nom\", \"classementPositif\",\"classementNegatif\",";
+        int counter = promethee.fields.size();
+        for(String field : promethee.fields) {
+            counter --;
+            jsObjectFields += "\"" + field + "\"";
+            if(counter != 0) {
+                jsObjectFields += ", ";
+            }
+        }
+        jsObjectFields += "]";
+        
+        // Data JSON
+        String jsObjectData = "{";
+        counter = promethee.classementPositifGeneric.size();
+        for(EntryData entry : promethee.classementPositifGeneric) {
+            counter --;
+            jsObjectData += "\"" + entry.name + "\":{" 
+                    + "classementPositif:" + (promethee.classementPositifGeneric.size() - counter) + ","
+                    + "classementNegatif:" + ((promethee.classementNegatifGeneric.indexOf(entry)) + 1) + ","
+                    + "nom:\"" + entry.name + "\",";
+            int subCounter = promethee.fields.size();
+            for(String field : promethee.fields) {
+                subCounter --;
+                jsObjectData += field + ":" + entry.data.get(field);
+                if(subCounter != 0) {
+                    jsObjectData += ", ";
+                }
+            }
+            jsObjectData += "}";
+            if(counter != 0) {
+                jsObjectData += ", ";
+            }
+        }
+        jsObjectData += "}";
+        
+        scopes.put("fieldsJSON", jsObjectFields);
+        scopes.put("dataJSON", jsObjectData);
+        scopes.put("title", "Un titre au hasard");
         
         // Generating html string value
         return generateString(scopes, "views/html_output_prometheeOne.mustache");

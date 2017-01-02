@@ -246,8 +246,7 @@ function constructSelector(fields, idSelector) {
  *
  */
 function displayGraph(data, fieldX, fieldY, container) {
-
-  displayGraph.myBubbleChart = null;
+  
   var data_bubble = [];
   for(var name in data) {
     data_bubble.push({
@@ -311,7 +310,7 @@ function displayGraph(data, fieldX, fieldY, container) {
   if(displayGraph.myBubbleChart !== null) {
     displayGraph.myBubbleChart.destroy();
   }
-  myBubbleChart = new Chart(container,{
+  displayGraph.myBubbleChart = new Chart(container,{
       type: 'bubble',
       data: data,
       options: options
@@ -325,6 +324,7 @@ function updateGraph() {
 
 $(document).foundation();
 $(document).ready(function() {
+  displayGraph.myBubbleChart = null;
   constructFieldSelectForTable(fields, "fieldSelectForTable", "dataTable");
   constructTable(data, fields, "dataTable");
   constructSelector(fields, "selectVarX");

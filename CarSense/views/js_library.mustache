@@ -1,16 +1,53 @@
-
-<script type="text/javascript">
+   <script type="text/javascript">
 
 /*
 Il faut une structure de données particulière qui puisse être
 utilisée directement ici.
 On va faire un exemple ici.
 */
+
 var data = [];
 var fields = {{{fieldsJSON}}};
 var filetitle = "{{title}}";
 
-data = {{{dataJSON}}};
+data = {{{dataJSON}}}
+
+/*{
+  "voiture1": {
+    "classement": 1,
+    "nom": "voiture1",
+    "vitesseMaximale": 200,
+    "prix": 10,
+    "truc": 100,
+    "Flux_positif": 10
+  },
+  "voiture2": {
+    "classement": 2,
+    "nom": "voiture2",
+    "vitesseMaximale": 100,
+    "prix": 5,
+    "truc": 80,
+    "Flux_positif": 9
+  },
+  "voiture3": {
+    "classement": 3,
+    "nom": "voiture3",
+    "vitesseMaximale": 300,
+    "prix": 50,
+    "truc": 80,
+    "Flux_positif": 8
+  },
+
+  "voiture4": {
+    "classement": 4,
+    "nom": "voiture4",
+    "vitesseMaximale": 120,
+    "prix": 20,
+    "truc": 100,
+    "Flux_positif": 7
+  }
+};*/
+
 /**
  * 
  * @param {type} data
@@ -112,8 +149,7 @@ function constructSelector(fields, idSelector) {
  *
  */
 function displayGraph(data, fieldX, fieldY, container) {
-
-  displayGraph.myBubbleChart = null;
+  
   var data_bubble = [];
   for(var name in data) {
     data_bubble.push({
@@ -177,7 +213,7 @@ function displayGraph(data, fieldX, fieldY, container) {
   if(displayGraph.myBubbleChart !== null) {
     displayGraph.myBubbleChart.destroy();
   }
-  myBubbleChart = new Chart(container,{
+  displayGraph.myBubbleChart = new Chart(container,{
       type: 'bubble',
       data: data,
       options: options
@@ -191,6 +227,7 @@ function updateGraph() {
 
 $(document).foundation();
 $(document).ready(function() {
+  displayGraph.myBubbleChart = null;
   constructFieldSelectForTable(fields, "fieldSelectForTable", "dataTable");
   constructTable(data, fields, "dataTable");
   constructSelector(fields, "selectVarX");
@@ -202,4 +239,5 @@ $(document).ready(function() {
   $("#selectVarY").change(updateGraph);
 });
 
-</script>
+
+    </script>

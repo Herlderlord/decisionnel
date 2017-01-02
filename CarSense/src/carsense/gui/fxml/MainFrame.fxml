@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="575.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
+<AnchorPane id="AnchorPane" fx:id="AnchorPane" prefHeight="575.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="carsense.gui.controller.MainFrameController">
    <children>
       <VBox id="mainVBox" fx:id="mainVBox" layoutX="7.0" layoutY="14.0" prefHeight="547.0" prefWidth="441.0">
          <children>
@@ -18,12 +21,12 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label layoutX="14.0" layoutY="55.0" text="Données voitures" />
-                  <Label layoutX="14.0" layoutY="83.0" text="Données critères" />
+                  <Label layoutX="14.0" layoutY="55.0" text="Données" />
+                  <Label layoutX="14.0" layoutY="83.0" text="Configuration" />
                   <TextField id="donneesVoitures_field" fx:id="donneesVoitures_field" editable="false" layoutX="119.0" layoutY="51.0" prefHeight="25.0" prefWidth="220.0" />
-                  <TextField id="donneesCriteres_field" fx:id="donneesCriteres_field" editable="false" layoutX="119.0" layoutY="79.0" prefHeight="25.0" prefWidth="220.0" />
+                  <TextField id="donneesCriteres_field" fx:id="donneesConfig_field" editable="false" layoutX="119.0" layoutY="79.0" prefHeight="25.0" prefWidth="220.0" />
                   <Button id="selectionVoitures_button" fx:id="selectionVoitures_button" layoutX="349.0" layoutY="51.0" mnemonicParsing="false" onAction="#selectionVoitures_evt" text="Fichier..." />
-                  <Button id="selectionCriteres_button" fx:id="selectionCriteres_button" layoutX="349.0" layoutY="79.0" mnemonicParsing="false" onAction="#selectionCriteres_evt" text="Fichier..." />
+                  <Button id="selectionCriteres_button" fx:id="selectionConfig_button" layoutX="349.0" layoutY="79.0" mnemonicParsing="false" onAction="#selectionConfig_evt" text="Fichier..." />
                   <Label id="config_status" fx:id="config_status" alignment="BASELINE_CENTER" layoutX="14.0" layoutY="113.0" prefHeight="25.0" prefWidth="393.0" />
                </children>
             </Pane>

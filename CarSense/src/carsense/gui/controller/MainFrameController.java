@@ -12,11 +12,13 @@ import carsense.Methods.Borda;
 import carsense.Methods.MethodStrategy;
 import carsense.Methods.PrometheeOne;
 import carsense.Methods.PrometheeTwo;
+import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
 import carsense.Output.HtmlGenerator;
 import carsense.Output.OutputGenerator;
 import carsense.Output.StringGenerator;
 import carsense.Process.Builder;
+import carsense.Process.DataProblemBuilder;
 import carsense.gui.FXMLCarSense;
 import java.awt.Desktop;
 import java.io.BufferedWriter;
@@ -74,20 +76,21 @@ public class MainFrameController implements Initializable {
      */
 
     @FXML
-    public TextField donneesVoitures_field, donneesCriteres_field;
+    public TextField donneesVoitures_field, donneesCriteres_field, donneesConfig_field;
     @FXML
     public Button selectionVoitures_button, selectionCriteres_button, 
             prometheeOne_button, prometheeTwo_button, borda_button,
-            generer_button, genererHtml_button;
+            generer_button, genererHtml_button, selectionConfig_button;
     @FXML
     public Label methodeSelectionnee_label, config_status;
     @FXML
     public TextArea output_area;
     
     private String fichierVoitures = "", fichierCriteres = "";
+    private String fichierConfiguration = "";
     private String methode = "";
     
-    private Problem problem;
+    private DataProblem problem;
     private FunctionPreferenceStrategy function;
     private MethodStrategy strategy;
     private OutputGenerator generator;
@@ -104,8 +107,10 @@ public class MainFrameController implements Initializable {
     }    
     
     public void updateProblem () throws IOException {
-        if (!fichierVoitures.isEmpty() && !fichierCriteres.isEmpty()) {
-            problem = Builder.createProblemVoiture(fichierVoitures, fichierCriteres);
+        if (!fichierVoitures.isEmpty() && !fichierConfiguration.isEmpty()) {
+            DataProblemBuilder builder = new DataProblemBuilder(); 
+            builder.builderDataProblemBuilder(fichierVoitures, fichierConfiguration);
+            problem = builder.getDataProblem();
         }
     }
     
@@ -124,16 +129,17 @@ public class MainFrameController implements Initializable {
         }
     }
     
+    
     @FXML
-    public void selectionCriteres_evt(ActionEvent evt) throws IOException {
-        if (evt.getSource().equals(selectionCriteres_button)) {
+    public void selectionConfig_evt(ActionEvent evt) throws IOException {
+        if (evt.getSource().equals(selectionConfig_button)) {
             FileChooser fileChooser = new FileChooser();
             fileChooser.setInitialDirectory(new File(Paths.get("").toAbsolutePath().toString()+File.separator+"res"));
             fileChooser.setTitle("Choix fichier critères");
             File file = fileChooser.showOpenDialog(getStage());
             if (file != null) {
-                fichierCriteres = file.getCanonicalPath();
-                donneesCriteres_field.setText(file.getName());
+                fichierConfiguration = file.getCanonicalPath();
+                donneesConfig_field.setText(file.getName());
                 updateProblem();
             }
         }
@@ -175,10 +181,10 @@ public class MainFrameController implements Initializable {
                 alert.setHeaderText(null);
                 String contentText = "";
                 if (fichierVoitures.isEmpty()) {
-                    contentText += "Veuilez choisir un fichier de chargement de voitures.\n";
+                    contentText += "Veuilez choisir un fichier de données.\n";
                 }
-                if (fichierCriteres.isEmpty()) {
-                    contentText += "Veuilez choisir un fichier de chargement de critères.\n";
+                if (fichierConfiguration.isEmpty()) {
+                    contentText += "Veuilez sélectionner un fichier de configuration.\n";
                 }
                 if (methode.isEmpty()) {
                     contentText += "Veuillez sélectionner une méthode de calcul.";
@@ -224,15 +230,15 @@ public class MainFrameController implements Initializable {
         if (evt.getSource().equals(genererHtml_button)) {
             Alert alert = new Alert(null);
             alert.setTitle("Générer");
-            if (fichierVoitures.isEmpty() || fichierCriteres.isEmpty() || methode.isEmpty()) {
+            if (fichierVoitures.isEmpty() || fichierConfiguration.isEmpty() || methode.isEmpty()) {
                 alert.setAlertType(AlertType.ERROR);
                 alert.setHeaderText(null);
                 String contentText = "";
                 if (fichierVoitures.isEmpty()) {
                     contentText += "Veuilez choisir un fichier de chargement de voitures.\n";
                 }
-                if (fichierCriteres.isEmpty()) {
-                    contentText += "Veuilez choisir un fichier de chargement de critères.\n";
+                if (fichierConfiguration.isEmpty()) {
+                    contentText += "Veuilez sélectionner un fichier de configuration.\n";
                 }
                 if (methode.isEmpty()) {
                     contentText += "Veuillez sélectionner une méthode de calcul.";

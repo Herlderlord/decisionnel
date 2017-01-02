@@ -9,6 +9,7 @@ import carsense.FunctionsPreference.FunctionPreferenceStrategy;
 import carsense.FunctionsPreference.VoieBasiqueStrategy;
 import carsense.Modele.DataProblem;
 import carsense.Modele.Problem;
+import java.util.List;
 
 /**
  *
@@ -16,6 +17,7 @@ import carsense.Modele.Problem;
  */
 public abstract class Promethee extends MethodStrategy {
     
+    public List<String> fields;
     public FunctionPreferenceStrategy function = null; 
     
     /**

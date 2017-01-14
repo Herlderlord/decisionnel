@@ -26,6 +26,7 @@ import java.util.Map;
  */
 public class PrometheeTwo extends Promethee {
     
+    public DataProblem problem;
     public PrometheeOne prometheeOne = null; 
     public double[] fluxNet = null;
     public List<Voiture> classement = null;
@@ -73,7 +74,7 @@ public class PrometheeTwo extends Promethee {
     
     @Override
     public void calcul(DataProblem problem, FunctionPreferenceStrategy function) {
-        
+        this.problem = problem;
         this.fields = problem.fields;
         this.classement = new ArrayList<Voiture>();
         double[] fluxNet = this.calculFluxNet(function.calculPreference(problem));

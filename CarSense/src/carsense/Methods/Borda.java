@@ -29,6 +29,7 @@ import java.util.Map;
  */
 public class Borda extends MethodStrategy {
 
+    public DataProblem problem;
     public List<Voiture> voitures;
     
     public Map<Voiture, Double> critere1;
@@ -41,6 +42,7 @@ public class Borda extends MethodStrategy {
     
     
     public List<Voiture> classement;
+    // Final score est trié
     public double [] finalScores;
     public List<String> fields;
     
@@ -188,6 +190,7 @@ public class Borda extends MethodStrategy {
     
     @Override
     public void calcul(DataProblem problem) {
+        this.problem = problem;
         this.fields = problem.fields;
         // Filing each critere with their entries values.
         for(EntryData entry : problem.data) {

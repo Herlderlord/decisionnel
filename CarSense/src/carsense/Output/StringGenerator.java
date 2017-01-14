@@ -34,17 +34,17 @@ public class StringGenerator implements OutputGenerator {
         double[] fluxNegatif = promethee.fluxNegatif; 
         double[] fluxPositif = promethee.fluxPositif;
         
-        String message_negatif = "["; 
-        String message_positif = "[";
+        String message_negatif = ""; 
+        String message_positif = "";
         for(int i = 0; i < fluxNegatif.length && i < fluxPositif.length; i++) {
-            message_negatif += fluxNegatif[i] + " ,";
-            message_positif += fluxPositif[i] + " ,";
+            message_negatif += promethee.problem.data.get(i).name + " : " + fluxNegatif[i] + "\n";
+            message_positif += promethee.problem.data.get(i).name + " : " + fluxPositif[i] + "\n";
         }
-        message_negatif += "]"; 
-        message_positif += "]";
+        message_negatif += ""; 
+        message_positif += "";
         
-        content += "Flux Positif : " + message_positif + "\n"; 
-        content += "Flux Negatif : " + message_negatif + "\n";       
+        content += "Flux Positifs : \n" + message_positif + "\n"; 
+        content += "Flux Negatifs : \n" + message_negatif + "\n";       
         
         // Classement Positif 
         content += "Classement Positif Générique : \n";
@@ -103,13 +103,13 @@ public class StringGenerator implements OutputGenerator {
         String content = "";
         
         // Flux net scores
-        String message_net = "[";
+        String message_net = "Flux nets : \n";
         for(int i = 0; i < fluxNet.length; i++) {
-            message_net += fluxNet[i] + " ,";
+            message_net += promethee.problem.data.get(i).name + " : " + fluxNet[i] + "\n";
         }
-        message_net += "]\n";
+        message_net += "\n";
         
-        content += "Flux net : \n" + message_net;
+        content += message_net;
         // Classement Net générique 
         content += "Classement Net Générique :\n"; 
         counter = promethee.classementGeneric.size();
@@ -129,14 +129,11 @@ public class StringGenerator implements OutputGenerator {
     public String generate (Borda borda) {
         List<Voiture> voitures = borda.classement;
         
-        String content = "Scores finals : \n[";
+        String content = "Scores finals : \n";
         for(int i = 0; i < borda.finalScores.length; i++) {
-            if(i==borda.finalScores.length - 1) 
-                content += borda.finalScores[i];
-            else
-                content += borda.finalScores[i] + ", ";
+            content += borda.classementGeneric.get(i).name + " : " + borda.finalScores[i] + "\n";
         }
-        content += "]";
+        content += "";
         
         content += "\n";
         content += "Liste générique \n"; 

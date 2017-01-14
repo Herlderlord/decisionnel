@@ -30,7 +30,7 @@ import java.util.Map;
  */
 public class PrometheeOne extends Promethee {
     
-    
+    public DataProblem problem;
     public double[] fluxPositif; 
     public double[] fluxNegatif;
     public List<Voiture> classementPositif; 
@@ -109,6 +109,7 @@ public class PrometheeOne extends Promethee {
     
     @Override
     public void calcul(DataProblem problem, FunctionPreferenceStrategy function) {
+        this.problem = problem;
         this.fields = problem.fields;
         double[][] result = function.calculPreference(problem);
         

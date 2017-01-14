@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>CarSense : Fichier html</title>
+
+    <!-- Compressed CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.css" media="screen" title="Foundation">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.css" media="screen" title="vis js css file">
+    <!-- Compressed JavaScript -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/foundation/6.2.4/foundation.min.js"></script>
+    <script type="https://cdnjs.cloudflare.com/ajax/libs/vis/4.17.0/vis.min.js"></script>
+  </head>
+  <body>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li class="menu-text">CarSense</li>
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns larget-12">
+        <h1 id="filetitle">Fichier X</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="columns large-3">
+        <div class="">
+          <table class="table" id="fieldSelectForTable">
+            <tr>
+              <td><input id="inputFieldSelectForTable" type="checkbox"><label for="checkbox1">Champs 1</label></td>
+            </tr>
+            <tr>
+              <td><input id="checkbox1" type="checkbox"><label for="checkbox1">Champs 2</label></td>
+            </tr>
+            <tr>
+              <td><input id="checkbox1" type="checkbox"><label for="checkbox1">Champs 3</label></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="columns large-9">
+
+        <table class="table" id="dataTable">
+          <thead>
+            <tr>
+              <th>
+                Title
+              </th>
+              <th>
+                Value 1
+              </th>
+              <th>
+                Value 2
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                Name
+              </td>
+              <td>
+                Value
+              </td>
+              <td>
+                Value
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="columns large-9">
+        <canvas class="" id="graph">
+
+        </canvas>
+      </div>
+      <div class="columns large-3">
+        <label for="selectVarX">Variable X</label>
+        <select class="" id="selectVarX" name="">
+          <option value="">Var 1</option>
+          <option value="">Var 2</option>
+          <option value="">Var 3</option>
+        </select>
+        <label for="selectVarY">Variable Y</label>
+        <select class="" id="selectVarY" name="">
+          <option value="">Var 1</option>
+          <option value="">Var 2</option>
+          <option value="">Var 3</option>
+        </select>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+
+/*
+Il faut une structure de données particulière qui puisse être
+utilisée directement ici.
+On va faire un exemple ici.
+*/
+
+var data = [];
+var fields = ["nom", "classement","Prix", "VitesseMax", "ConsoMoyenne", "DistFreinage", "Confort", "VolumeCoffre", "Acceleration"];
+var filetitle = "Données Borda";
+
+data = {"Voiture10":{classement:1,nom:"Voiture10",Prix:191.0, VitesseMax:203.0, ConsoMoyenne:7.5, DistFreinage:34.5, Confort:1.0, VolumeCoffre:520.0, Acceleration:32.0}, "Voiture5":{classement:2,nom:"Voiture5",Prix:171.5, VitesseMax:199.0, ConsoMoyenne:7.8, DistFreinage:35.7, Confort:5.0, VolumeCoffre:494.0, Acceleration:32.0}, "Voiture3":{classement:3,nom:"Voiture3",Prix:167.0, VitesseMax:195.0, ConsoMoyenne:7.9, DistFreinage:37.0, Confort:2.0, VolumeCoffre:480.0, Acceleration:34.0}, "Voiture7":{classement:4,nom:"Voiture7",Prix:152.9, VitesseMax:195.0, ConsoMoyenne:7.6, DistFreinage:34.4, Confort:3.0, VolumeCoffre:475.0, Acceleration:33.6}, "Voiture8":{classement:5,nom:"Voiture8",Prix:172.0, VitesseMax:209.0, ConsoMoyenne:6.6, DistFreinage:36.6, Confort:4.0, VolumeCoffre:440.0, Acceleration:30.9}, "Voiture2":{classement:6,nom:"Voiture2",Prix:168.8, VitesseMax:195.0, ConsoMoyenne:5.7, DistFreinage:35.8, Confort:7.0, VolumeCoffre:440.0, Acceleration:33.0}, "Voiture6":{classement:7,nom:"Voiture6",Prix:155.0, VitesseMax:194.0, ConsoMoyenne:7.7, DistFreinage:37.4, Confort:4.0, VolumeCoffre:452.0, Acceleration:33.8}, "Voiture4":{classement:8,nom:"Voiture4",Prix:168.0, VitesseMax:191.0, ConsoMoyenne:8.3, DistFreinage:34.4, Confort:2.0, VolumeCoffre:430.0, Acceleration:34.6}, "Voiture1":{classement:9,nom:"Voiture1",Prix:156.0, VitesseMax:201.0, ConsoMoyenne:8.0, DistFreinage:39.6, Confort:6.0, VolumeCoffre:378.0, Acceleration:31.2}, "Voiture9":{classement:10,nom:"Voiture9",Prix:125.0, VitesseMax:182.0, ConsoMoyenne:6.4, DistFreinage:40.6, Confort:8.0, VolumeCoffre:408.0, Acceleration:33.5}}
+
+/*{
+  "voiture1": {
+    "classement": 1,
+    "nom": "voiture1",
+    "vitesseMaximale": 200,
+    "prix": 10,
+    "truc": 100,
+    "Flux_positif": 10
+  },
+  "voiture2": {
+    "classement": 2,
+    "nom": "voiture2",
+    "vitesseMaximale": 100,
+    "prix": 5,
+    "truc": 80,
+    "Flux_positif": 9
+  },
+  "voiture3": {
+    "classement": 3,
+    "nom": "voiture3",
+    "vitesseMaximale": 300,
+    "prix": 50,
+    "truc": 80,
+    "Flux_positif": 8
+  },
+
+  "voiture4": {
+    "classement": 4,
+    "nom": "voiture4",
+    "vitesseMaximale": 120,
+    "prix": 20,
+    "truc": 100,
+    "Flux_positif": 7
+  }
+};*/
+
+/**
+ * 
+ * @param {type} data
+ * @param {type} fieldX
+ * @param {type} fieldY
+ * @param {type} container
+ * @returns {undefined} 
+ */
+function constructFileTitle($filetitle) {
+    $("#filetitle").html(filetitle);
+}
+/**
+ *
+ *
+ */
+function constructFieldSelectForTable(fields, idSelector, idTable) {
+
+  var htmlValue = "";
+  var i = 0;
+  for(var field in fields) {
+    // htmlValue += "<tr><td>Je test un truc simple ! </td></tr>";
+    htmlValue += "<tr><td><input id=\"inputFieldSelectForTable" + i + "\" type=\"checkbox\" value=\"" + fields[field] + "\"><label for=\"inputFieldSelectForTable" + i + "\">" + fields[field] + "</label></td></tr>";
+    i++;
+  }
+  $("#" + idSelector + " tr").remove();
+  $("#" + idSelector).append(htmlValue);
+  $("#" + idSelector + " input").attr('checked', true);
+
+  $("#" + idSelector + " input").change(function(event) {
+    var fieldToChange = $(event.target).attr("value");
+    var i = 0;
+    for(var index in fields) {
+      if(fields[index] == fieldToChange) {
+        break;
+      }
+      i++;
+    }
+    i++;
+    console.log(i);
+    if(this.checked) {
+      $('#' + idTable + ' td:nth-child(' + i + ')').show();
+      $('#' + idTable + ' th:nth-child(' + i + ')').show();
+    }
+    else {
+      $('#' + idTable + ' td:nth-child(' + i + ')').hide();
+      $('#' + idTable + ' th:nth-child(' + i + ')').hide();
+    }
+  });
+
+}
+/**
+ *
+ *
+ *
+ */
+function constructTable(data, fields, idTable) {
+  // THEAD
+  var htmlHead = "";
+  for(var field in fields) {
+    htmlHead += "<th>" + fields[field] + "</th>"
+  }
+  var htmlHead = "<thead><tr>" + htmlHead + "</tr></thead>"
+
+  // TBODY
+  var htmlBody = "";
+  for(var name in data) {
+    htmlBody += "<tr>";
+    for(var i = 0; i < fields.length; i++) {
+      htmlBody += "<td>" + data[name][fields[i]] + "</td>";
+    }
+    htmlBody += "</tr>";
+  }
+
+  var htmlBody = "<tbody>" + htmlBody + "</tbody>";
+
+  var htmlValue = htmlHead + htmlBody;
+  $("#" + idTable).html(htmlValue);
+}
+
+/**
+ *
+ *
+ *
+ */
+function constructSelector(fields, idSelector) {
+  var options = "";
+
+  for(var field in fields) {
+    options += "<option value=\"" + fields[field] + "\">" + fields[field] + "</option>";
+  }
+  $("#" + idSelector).html(options);
+}
+
+
+
+/**
+ *
+ *
+ *
+ */
+function displayGraph(data, fieldX, fieldY, container) {
+  
+  var data_bubble = [];
+  for(var name in data) {
+    data_bubble.push({
+      label: name,
+      x: data[name][fieldX],
+      y: data[name][fieldY],
+      r: 10
+    });
+    console.log(data[name][fieldX]);
+  }
+  var data = {
+    datasets: [
+        {
+            label: 'Jeu de données',
+            data: data_bubble,
+            backgroundColor:"#FF6384",
+            hoverBackgroundColor: "#FF6384",
+        }]
+  };
+
+  var options = {
+    title: {
+      display: "true",
+      text: "Graphique des données sur deux variables"
+    },
+    tooltips: {
+      enabled: true,
+      callbacks: {
+        label: function(tooltipItem, data) {
+          return " " + data.datasets[0].data[tooltipItem.index].label;
+          }
+      }
+
+    },
+    scales: {
+      yAxes: [
+        {
+          ticks: {
+            min: 0
+          },
+          scaleLabel: {
+            display: true,
+            labelString: fieldY
+          }
+        }
+      ],
+      xAxes: [
+        {
+          ticks: {
+            min: 0
+          },
+          scaleLabel: {
+            display: true,
+            labelString: fieldX
+          }
+        }
+      ]
+    }
+
+  };
+  if(displayGraph.myBubbleChart !== null) {
+    displayGraph.myBubbleChart.destroy();
+  }
+  displayGraph.myBubbleChart = new Chart(container,{
+      type: 'bubble',
+      data: data,
+      options: options
+  });
+
+}
+
+function updateGraph() {
+  displayGraph(data, $("#selectVarX option:selected").val(), $("#selectVarY option:selected").val(), document.getElementById("graph"));
+}
+
+$(document).foundation();
+$(document).ready(function() {
+  displayGraph.myBubbleChart = null;
+  constructFieldSelectForTable(fields, "fieldSelectForTable", "dataTable");
+  constructTable(data, fields, "dataTable");
+  constructSelector(fields, "selectVarX");
+  constructSelector(fields, "selectVarY");
+  constructFileTitle(filetitle);
+  displayGraph(data, "vitesseMaximale", "prix", document.getElementById("graph"));
+  $("#selectVarX").change(updateGraph);
+
+  $("#selectVarY").change(updateGraph);
+});
+
+
+    </script>
+
+
+  </body>
+</html>

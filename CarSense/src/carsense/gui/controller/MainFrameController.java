@@ -109,7 +109,7 @@ public class MainFrameController implements Initializable {
     public void updateProblem () throws IOException {
         if (!fichierVoitures.isEmpty() && !fichierConfiguration.isEmpty()) {
             DataProblemBuilder builder = new DataProblemBuilder(); 
-            builder.builderDataProblemBuilder(fichierVoitures, fichierConfiguration);
+            builder.builderDataProblemBuilder(fichierVoitures, fichierConfiguration, "name");
             problem = builder.getDataProblem();
         }
     }
@@ -260,7 +260,7 @@ public class MainFrameController implements Initializable {
                         fileName += ".html";
                     }
                     fileName = URLEncoder.encode(fileName,"UTF-8");
-                    File file = new File(fileName);
+                    File file = new File("output/" + fileName);
                     FileOutputStream fos = new FileOutputStream (file);
                     OutputStreamWriter osw = new OutputStreamWriter (fos);
                     String text = "";
@@ -290,7 +290,7 @@ public class MainFrameController implements Initializable {
                     osw.write(text);
                     osw.close();
                     fos.close();
-                    Desktop.getDesktop().browse(new URI(fileName));
+                    Desktop.getDesktop().browse(new File("output/" + fileName).toURL().toURI());
                 }
             }
         }

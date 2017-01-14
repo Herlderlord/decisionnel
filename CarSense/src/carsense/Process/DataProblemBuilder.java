@@ -75,6 +75,7 @@ public class DataProblemBuilder {
                 
                 // -- Create EntryData
                 EntryData entryData = new EntryData();
+                entryData.generateName();
                 for (Map.Entry<String, String> entry : line.entrySet()) {
                     // -- Generate Name
                     if(entry.getKey().compareTo(fieldId) == 0) {
@@ -83,13 +84,13 @@ public class DataProblemBuilder {
                         // -- Create Fields 
                         if(!fieldsCreated)
                             this.dataProblem.fields.add(entry.getKey());
-                        entryData.generateName();
                         entryData.data.put(entry.getKey(), Double.parseDouble(entry.getValue()));        
                         entryData.fields = this.dataProblem.fields;
                     }
                 }
                 
                 this.dataProblem.data.add(entryData);
+                System.out.println("NOM : " + entryData.name);
                 fieldsCreated = true;
                 // Add data line to problem
             }

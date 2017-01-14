@@ -44,49 +44,7 @@ public class StringGenerator implements OutputGenerator {
         message_positif += "]";
         
         content += "Flux Positif : " + message_positif + "\n"; 
-        content += "Flux Negatif : " + message_negatif + "\n";
-        
-        // Classement Positif 
-        content += "Classement Positif : \n";
-        Iterator<Voiture> it_positif = promethee.classementPositif.iterator();
-        
-        content += "[";
-        counter = 0;
-        while(it_positif.hasNext()) {
-            Voiture voiture = it_positif.next();
-            if(it_positif.hasNext()) {
-                content += voiture.getNom();
-                if(fluxPositif[counter] == fluxPositif[counter+1]) 
-                    content += " = ";
-                else 
-                    content += " > ";
-            }
-            else 
-                content += voiture.getNom();
-        }
-        content += "]\n";
-        
-        
-        // Classement Négatif
-        content += "Classement Negatif :\n";
-        Iterator<Voiture> it_negatif = promethee.classementNegatif.iterator();
-        
-        content += "[";
-        counter = 0;
-        while(it_negatif.hasNext()) {
-            Voiture voiture = it_negatif.next();
-            if(it_negatif.hasNext()) {
-                content += voiture.getNom();    
-                if(fluxNegatif[counter] == fluxNegatif[counter+1])
-                    content += " = ";
-                else 
-                    content += " > ";
-            }
-            else 
-                content += voiture.getNom();
-        }
-        content += "]\n";
-        
+        content += "Flux Negatif : " + message_negatif + "\n";       
         
         // Classement Positif 
         content += "Classement Positif Générique : \n";
@@ -146,35 +104,12 @@ public class StringGenerator implements OutputGenerator {
         
         // Flux net scores
         String message_net = "[";
-        
         for(int i = 0; i < fluxNet.length; i++) {
             message_net += fluxNet[i] + " ,";
         }
-        message_net += "]";
+        message_net += "]\n";
         
-        content += "Flux Net : " + message_net + "\n";
-        
-        // Classement Net
-        content += "Classement Net :\n";
-        Iterator<Voiture> it_net = promethee.classement.iterator();
-        
-        content += "[";
-        int i = 0; 
-        while(it_net.hasNext()) {
-            Voiture voiture = it_net.next();
-            if(it_net.hasNext()) {
-                content += voiture.getNom();
-                if(fluxNet[i+1] == fluxNet[i])
-                    content += " = ";
-                else 
-                    content += " > ";
-            }
-            else 
-                content += voiture.getNom();
-            i++;
-        }
-        content += "]\n";
-        
+        content += "Flux net : \n" + message_net;
         // Classement Net générique 
         content += "Classement Net Générique :\n"; 
         counter = promethee.classementGeneric.size();
@@ -192,16 +127,17 @@ public class StringGenerator implements OutputGenerator {
     
     @Override
     public String generate (Borda borda) {
-        String content = "Liste voitures\n";
-        
         List<Voiture> voitures = borda.classement;
-        Iterator <Voiture> it = voitures.iterator();
-        int i = 0; 
-        while (it.hasNext()) {
-            Voiture v = it.next();
-            content +=  "[ " + v.getNom() + " : " + borda.finalScores[i] + " ]\n";
-            i++;
+        
+        String content = "Scores finals : \n[";
+        for(int i = 0; i < borda.finalScores.length; i++) {
+            if(i==borda.finalScores.length - 1) 
+                content += borda.finalScores[i];
+            else
+                content += borda.finalScores[i] + ", ";
         }
+        content += "]";
+        
         content += "\n";
         content += "Liste générique \n"; 
         content += "[";
